@@ -5,7 +5,8 @@ const UsuarioRepository = require('./../models/repository/UsuarioRepository.js')
 var usuarioRepository = new UsuarioRepository();
 
 loginRouter.get('/', function (req, res) {
-    res.render('login');
+    if(req.session.usuario) res.redirect('/dashboard');
+    else res.render('login');
 });
 
 loginRouter.post('/', async function (req, res) {

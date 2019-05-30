@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 
 /* ---------- Controllers ------------ */
 var loginController = require('./controllers/LoginController.js');
+var usuarioController = require('./controllers/UsuarioController.js');
 /* ---------- Controllers ------------ */
 
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use(session({
 /*  --------- Routes ----------- */
 
 app.use('/login', loginController);
+app.use('/dashboard', usuarioController);
 
 /*  --------- Routes ----------- */
 
