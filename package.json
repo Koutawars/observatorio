@@ -1,0 +1,19 @@
+{
+  "name": "observatorio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Koutawars/observatorio.git"
+  },
+  "author": "Kouta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Koutawars/observatorio/issues"
+  },
+  "homepage": "https://github.com/Koutawars/observatorio#readme"
+}
