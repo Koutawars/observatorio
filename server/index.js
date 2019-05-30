@@ -6,10 +6,7 @@ var body_parser = require('body-parser');
 var session = require('express-session');
 
 /* ---------- Controllers ------------ */
-
 var loginController = require('./controllers/LoginController.js');
-
-
 /* ---------- Controllers ------------ */
   
 app.use(express.json());
@@ -30,7 +27,7 @@ app.use(session({
 
 /*  --------- Routes ----------- */
 
-app.use('/', loginController);
+app.use('/login', loginController);
 
 /*  --------- Routes ----------- */
 

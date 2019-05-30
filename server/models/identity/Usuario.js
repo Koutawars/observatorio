@@ -1,11 +1,7 @@
 const TipoUsuario = require('./TipoUsuario.js');
 
 class Usuario {
-    constructor(){
-
-    }
-
-    constructor(id, nombre, apellido, direccion, correo, telefono,documento,password, tipoUsuario){
+    constructor(id = null, nombre = null, apellido = null, direccion = null, correo = null, telefono = null, documento = null, password = null, tipoUsuario = null){
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -15,16 +11,6 @@ class Usuario {
         this.documento = documento;
         this.password = password;
         this.tipoUsuario = new TipoUsuario(tipoUsuario);
-    }
-
-    constructor(usuario){
-        this.id = usuario.id;
-        this.nombre = usuario.nombre;
-        this.apellido = usuario.apellido;
-        this.direccion = usuario.direccion;
-        this.correo = usuario.correo;
-        this.telefono = usuario.telefono;
-        this.tipoUsuario = new TipoUsuario(usuario.tipoUsuario);
     }
 }
 
