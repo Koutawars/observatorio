@@ -23,7 +23,7 @@ class UsuarioRepository {
     */
     getOne(id){
         con.query(`
-            SELECT * FROM usuario INNER JOIN  where usuario.id = ${id};
+            SELECT * FROM usuario where usuario.id = ${id};
 
         `, function(err, result){
             
