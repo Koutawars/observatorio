@@ -36,9 +36,7 @@ class UsuarioRepository {
             SELECT * FROM usuario inner join tipo_usuario on usuario.tipo_usuario_idtipo_usuario = tipo_usuario.idtipo_usuario  where usuario.correo = ${correo};
 
         `, function(err, result){
-            
             if(result){
-                console.log(result);
                 tipo = new TipoUsuario(result[0].idtipo_usuario, result[0].nombre_tipo_usuario);
                 return new Usuario(result[0].id, result[0].nombre, result[0].apellido, result[0].direccion,  result[0].correo, result[0].telefono, result[0].documento ,result[0].password, tipo);
             }
