@@ -2,16 +2,8 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var public = '/../public';
-var mysql = require('mysql');
 var body_parser = require('body-parser');
 var session = require('express-session');
-
-var con = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '',
-    database:'colegios'
-  });
   
 app.use(express.json());
 app.use(express.urlencoded({extended: true }));
@@ -29,8 +21,9 @@ app.use(session({
   })
 );
 
+
 var sessionChecker = (req, res, next) => {
-    if (req.session.user && req.cookies.userid) {
+    if (req.session.user) {
         res.redirect('/dashboard');
     } else {
         next();
@@ -38,7 +31,7 @@ var sessionChecker = (req, res, next) => {
 };
 
 var sessionChecker2 = (req, res, next) => {
-    if (req.session.user && req.cookies.userid) {
+    if (req.session.user) {
         next();
     } else {
         res.redirect('/login');
@@ -50,7 +43,7 @@ app.use('/js',express.static(path.resolve(__dirname + public + '/views/js'))); /
 app.use('/img',express.static(path.resolve(__dirname + public + '/views/img'))); // direccion de las imagenes
 
 app.get('/logout', sessionChecker2, (req, res) => {
-    res.clearCookie();
+    req.session.destroy();
     res.redirect('/');
 });
 
