@@ -13,7 +13,7 @@ class EstudianteRepository{
 
             var Estudiantes = [];
             var temp;
-            if(err) throw err;
+            
             result.forEach(element => {
                 temp = new Estudiante(element[0].idestudiante, element[0].nombre,  element[0].apellido);
                 Estudiantes.push(temp);
@@ -31,7 +31,7 @@ class EstudianteRepository{
             var Estudiantes = [];
             var temp;
             
-            if(err) throw err;
+    
             temp = new Estudiante(element[0].idestudiante, element[0].nombre,  element[0].apellido);
             Estudiantes.push(temp);
             
