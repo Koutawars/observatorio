@@ -37,7 +37,7 @@ class UsuarioRepository {
             if(!result){
                 console.log(result);
                 tipo = new TipoUsuario(result[0].idtipo_usuario, result[0].nombre_tipo_usuario);
-                return new Usuario(result[0].id, result[0].nombre, result[0].apellido, result[0].direccion,  result[0].correo, result[0].telefono, result[0].documento , tipo);
+                return new Usuario(result[0].id, result[0].nombre, result[0].apellido, result[0].direccion,  result[0].correo, result[0].telefono, result[0].documento ,result[0].password, tipo);
             }
             return null;
         });
