@@ -1,4 +1,6 @@
-const con = require('../../connection.js');
+const con = require('./../../connection.js');
+const Usuario = require('./../identity/Usuario.js');
+const TipoUsuario = require('./../identity/TipoUsuario.js');
 
 
 class UsuarioRepository {
@@ -6,6 +8,7 @@ class UsuarioRepository {
         con.query(`
             SELECT * FROM usuario INNER JOIN ;
         `, function(err, result){
+
             var usuarios = [];
             var temp;
             result.forEach(element => {
