@@ -21,6 +21,7 @@ class UsuarioRepository {
 
     }
     */
+   
     async getOneCorreo(correo){
         return await con.query(`
         SELECT * FROM usuario inner join tipo_usuario on usuario.tipo_usuario_idtipo_usuario = tipo_usuario.idtipo_usuario  where usuario.correo = '${correo}';
