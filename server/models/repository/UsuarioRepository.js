@@ -33,7 +33,7 @@ class UsuarioRepository {
     }
     getOneCorreo(correo){
         con.query(`
-            SELECT * FROM usuario inner join tipo_usuario on usuario.id = tipo_usuario.idtipo_usuario  where usuario.correo = ${correo};
+            SELECT * FROM usuario inner join tipo_usuario on usuario.tipo_usuario_idtipo_usuario = tipo_usuario.idtipo_usuario  where usuario.correo = ${correo};
 
         `, function(err, result){
             
