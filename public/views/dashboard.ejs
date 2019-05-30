@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta content="text/html;" http-equiv="content-type" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <nav class="indigo">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Observatorio de estudiantes</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/logout">Salir</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="section"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="center">
+                    <h2 id="welcome"></h2>
+                </div>
+            </div>
+            <div class="col s12 l3">
+                <img width="100%" src="/img/perfil.png">
+                <label class="center"><span class="name"></span> <span class="lastname"></span></label>
+            </div>
+            <div class="col s12 l9">
+                <ul class="tabs row">
+                    <li class="tab col s3"><a class="indigo-text" href="#test1">Tu info</a></li>
+                </ul>
+                <div id="test1" class="col s12 ">
+                    <div id ="info" class="row">
+                        <span>
+                            <h6><div class="col s6">Nombre: </div><span class="col s6 indigo-text"><%= usuario.nombre %></span></h6>
+                        </span>
+                        <span>
+                            <h6><div class="col s6">Apellido: </div><span class="col s6 indigo-text"><%= usuario.apellido %></span></h6>
+                        </span>
+                        <span>
+                            <h6><div class="col s6">Correo: </div><span class="col s6 indigo-text"><%= usuario.correo %></span></h6>
+                        </span>
+                        <span>
+                            <h6><div class="col s6">Dirección: </div><span class="col s6 indigo-text"><%= usuario.direccion %></span></h6>
+                        </span>
+                        <span>
+                            <h6><div class="col s6">Telefono: </div><span class="col s6 indigo-text"><%= usuario.telefono %></span></h6>
+                        </span>
+                        <span>
+                            <h6><div class="col s6">Documento: </div><span class="col s6 indigo-text"><%= usuario.documento %></span></h6>
+                        </span>
+                        <span>
+                            <h6><div class="col s6">Tipo: </div><span class="col s6 indigo-text"><%= usuario.tipoUsuario.nombre %></span></h6>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript" src="/js/jquery.min.js"></script>
+            <script type="text/javascript" src="/js/materialize.min.js"></script>
+            <script type="text/javascript" src="/js/dashboard.js"></script>
+
+</body>
+
+</html>

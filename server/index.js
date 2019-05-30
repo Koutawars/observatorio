@@ -28,13 +28,6 @@ app.use(session({
   })
 );
 
-/*  --------- Routes ----------- */
-
-app.use('/login', loginController);
-app.use('/dashboard', usuarioController);
-
-/*  --------- Routes ----------- */
-
 /*  --------- Middleware (security) ----------- */
 const ROUTES = require('./routesPermited.js');
 
@@ -43,6 +36,7 @@ var sessionChecker = (req, res, next) => {
     if(search){
         index = search['index'];
     }
+
     if(index == 0) next();
     else if (req.session.usuario) next();
     else res.redirect('/login');
@@ -50,6 +44,13 @@ var sessionChecker = (req, res, next) => {
 
 app.use(sessionChecker);
 /*  --------- Middleware (security) ----------- */
+
+/*  --------- Routes ----------- */
+
+app.use('/login', loginController);
+app.use('/dashboard', usuarioController);
+
+/*  --------- Routes ----------- */
 
 app.use('/css',express.static(path.resolve(__dirname + public + '/views/css'))); // direccion del css
 app.use('/js',express.static(path.resolve(__dirname + public + '/views/js'))); // direccion del javascript
