@@ -21,24 +21,15 @@ class UsuarioRepository {
 
     }
     */
-    getOne(id){
-        con.query(`
-            SELECT * FROM usuario INNER JOIN  where usuario.id = ${id};
-
-        `, function(err, result){
-            
-            console.log(result);
-             return new Usuario(result[0], g, new TipoUsuario(result[0], ));
-        });
-    }
-    getOneCorreo(correo){
-        con.query(`
-            SELECT * FROM usuario inner join tipo_usuario on usuario.tipo_usuario_idtipo_usuario = tipo_usuario.idtipo_usuario  where usuario.correo = ${correo};
-
-        `, function(err, result){
+    async getOneCorreo(correo){
+        return await con.query(`
+        SELECT * FROM usuario inner join tipo_usuario on usuario.tipo_usuario_idtipo_usuario = tipo_usuario.idtipo_usuario  where usuario.correo = '${correo}';
+        `).then(function(result){
+            let tipo, usuario;
             if(result){
-                tipo = new TipoUsuario(result[0].idtipo_usuario, result[0].nombre_tipo_usuario);
-                return new Usuario(result[0].id, result[0].nombre, result[0].apellido, result[0].direccion,  result[0].correo, result[0].telefono, result[0].documento ,result[0].password, tipo);
+                tipo = new TipoUsuario(result[0].tipo_usuario_idtipo_usuario, result[0].nombre_tipo_usuario);
+                usuario = new Usuario(result[0].id, result[0].nombre, result[0].apellido, result[0].direccion,  result[0].correo, result[0].telefono, result[0].documento ,result[0].password, tipo);
+                return usuario;
             }
             return null;
         });

@@ -8,14 +8,12 @@ loginRouter.get('/', function (req, res) {
     res.render('login');
 });
 
-loginRouter.post('/', function (req, res) {
+loginRouter.post('/', async function (req, res) {
     let correo = req.body.correo;
     let password = req.body.password;
-    let usuario = usuarioRepository.getOneCorreo(correo);
-    console.log(usuario);
+    let usuario = await usuarioRepository.getOneCorreo(correo);
     if(usuario){
         if(usuario.password == password){
-            /* ----- Se crea la cookie ------ */
             req.session.usuario = usuario;
         }
     }
