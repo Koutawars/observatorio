@@ -26,6 +26,7 @@ class UsuarioRepository {
             SELECT * FROM usuario INNER JOIN  where usuario.id = ${id};
 
         `, function(err, result){
+            if(err) throw err;
             console.log(result);
              return new Usuario(result[0], g, new TipoUsuario(result[0], ));
         });
@@ -35,6 +36,8 @@ class UsuarioRepository {
             SELECT * FROM usuario inner join tipo_usuario on usuario.id = tipo_usuario.idtipo_usuario  where usuario.correo = ${correo};
 
         `, function(err, result){
+            
+            if(err) throw err;
             if(result){
                 console.log(result);
                 tipo = new TipoUsuario(result[0].idtipo_usuario, result[0].nombre_tipo_usuario);

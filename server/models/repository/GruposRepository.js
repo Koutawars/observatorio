@@ -12,7 +12,8 @@ class GrupoRepository{
              grupos.idgrupo = usuario_asignatura_grupo.grupo_idgrupo
              where usuario_asignatura_grupo.usuario_id = ${id} ;
         `, function(err, result){
-
+            
+            if(err) throw err;
             var grupos = [];
             var temp;
             result.forEach(element => {
@@ -30,7 +31,8 @@ class GrupoRepository{
              grupos.idgrupo = usuario_asignatura_grupo.grupo_idgrupo
              where usuario_asignatura_grupo.usuario_id != ${id} ;
         `, function(err, result){
-
+            
+            if(err) throw err;
             var grupos = [];
             var temp;
             result.forEach(element => {
