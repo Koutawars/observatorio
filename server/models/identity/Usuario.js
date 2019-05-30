@@ -5,13 +5,14 @@ class Usuario {
 
     }
 
-    constructor(id, nombre, apellido, direccion, correo, telefono, tipoUsuario){
+    constructor(id, nombre, apellido, direccion, correo, telefono,documento, tipoUsuario){
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
         this.correo = correo;
         this.telefono = telefono;
+        this.documento = documento;
         this.tipoUsuario = new TipoUsuario(tipoUsuario);
     }
 
