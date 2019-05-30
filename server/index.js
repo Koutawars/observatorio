@@ -4,13 +4,16 @@ var app = express();
 var public = '/../public';
 var body_parser = require('body-parser');
 var session = require('express-session');
+var cookieParser = require('cookie-parser');
 
 /* ---------- Controllers ------------ */
 var loginController = require('./controllers/LoginController.js');
+var usuarioController = require('./controllers/UsuarioController.js');
 /* ---------- Controllers ------------ */
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true }));
+app.use(cookieParser());
 app.set('trust proxy', 1);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, public ,'/views'));
@@ -21,13 +24,14 @@ app.use(session({
   secret : 's3Cur3',
   resave: true,
   saveUninitialized: true,
-  cookie: { secure: true }
+  cookie: { maxAge: 3600000*24*5 }
   })
 );
 
 /*  --------- Routes ----------- */
 
 app.use('/login', loginController);
+app.use('/dashboard', usuarioController);
 
 /*  --------- Routes ----------- */
 
@@ -39,11 +43,9 @@ var sessionChecker = (req, res, next) => {
     if(search){
         index = search['index'];
     }
-    if (req.session.usuario ||  index == 0) {
-        next();
-    } else {
-        res.redirect('/login');
-    }
+    if(index == 0) next();
+    else if (req.session.usuario) next();
+    else res.redirect('/login');
 };
 
 app.use(sessionChecker);
@@ -54,17 +56,13 @@ app.use('/js',express.static(path.resolve(__dirname + public + '/views/js'))); /
 app.use('/img',express.static(path.resolve(__dirname + public + '/views/img'))); // direccion de las imagenes
 
 
-
-/*
-app.get('/logout', sessionChecker2, (req, res) => {
+app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
 
-*/
-
 app.get('/', (req, res) => {
-    res.render("index");
+    res.redirect("dashboard");
 });
   
 app.listen(process.env.PORT || 5000, function () {

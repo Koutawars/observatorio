@@ -10,7 +10,7 @@ class Usuario {
         this.telefono = telefono;
         this.documento = documento;
         this.password = password;
-        this.tipoUsuario = new TipoUsuario(tipoUsuario);
+        this.tipoUsuario = tipoUsuario;
     }
 }
 
