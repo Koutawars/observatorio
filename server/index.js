@@ -8,7 +8,7 @@ var session = require('express-session');
 /* ---------- Controllers ------------ */
 var loginController = require('./controllers/LoginController.js');
 /* ---------- Controllers ------------ */
-  
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true }));
 app.set('trust proxy', 1);
@@ -31,21 +31,23 @@ app.use('/login', loginController);
 
 /*  --------- Routes ----------- */
 
-var sessionChecker = (req, res, next) => {
-    if (req.session.user) {
-        res.redirect('/dashboard');
-    } else {
-        next();
-    } 
-};
+/*  --------- Middleware (security) ----------- */
+const ROUTES = require('./routesPermited.js');
 
-var sessionChecker2 = (req, res, next) => {
-    if (req.session.user) {
+var sessionChecker = (req, res, next) => {
+    let search = ROUTES.exec(req.url), index;
+    if(search){
+        index = search['index'];
+    }
+    if (req.session.usuario ||  index == 0) {
         next();
     } else {
         res.redirect('/login');
     }
 };
+
+app.use(sessionChecker);
+/*  --------- Middleware (security) ----------- */
 
 app.use('/css',express.static(path.resolve(__dirname + public + '/views/css'))); // direccion del css
 app.use('/js',express.static(path.resolve(__dirname + public + '/views/js'))); // direccion del javascript
