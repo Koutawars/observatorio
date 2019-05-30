@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/Koutawars/observatorio/issues"
   },
-  "homepage": "https://github.com/Koutawars/observatorio#readme"
+  "homepage": "https://github.com/Koutawars/observatorio#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.1",
+    "express": "^4.17.1",
+    "express-session": "^1.16.1",
+    "mysql": "^2.17.1",
+    "path": "^0.12.7"
+  }
 }
