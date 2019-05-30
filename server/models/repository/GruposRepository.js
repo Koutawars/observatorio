@@ -10,7 +10,7 @@ class GrupoRepository{
              inner join
              usuario_asignatura_grupo on
              grupos.idgrupo = usuario_asignatura_grupo.grupo_idgrupo
-             where usuario_asignatura_grupo.usuario_id = ${id} ;
+             where usuario_asignatura_grupo.usuario_id = '${id}' ;
         `, function(err, result){
             
             var grupos = [];
@@ -28,7 +28,7 @@ class GrupoRepository{
              inner join
              usuario_asignatura_grupo on
              grupos.idgrupo = usuario_asignatura_grupo.grupo_idgrupo
-             where usuario_asignatura_grupo.usuario_id != ${id} ;
+             where usuario_asignatura_grupo.usuario_id != '${id}' ;
         `, function(err, result){
             
           

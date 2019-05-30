@@ -8,7 +8,7 @@ class EstudianteRepository{
         con.query(`
             SELECT * FROM estudiantes
 
-            where estudiantes.grupo_idgrupo = ${id} ;
+            where estudiantes.grupo_idgrupo = '${id}' ;
         `, function(err, result){
 
             var Estudiantes = [];
@@ -25,7 +25,7 @@ class EstudianteRepository{
         con.query(`
             SELECT * FROM estudiantes
 
-            where estudiantes.idestudiante = ${id} ;
+            where estudiantes.idestudiante = '${id}' ;
         `, function(err, result){
 
             var Estudiantes = [];
