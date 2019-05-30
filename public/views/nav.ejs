@@ -1,0 +1,19 @@
+
+    <nav class="darken-1 teal">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Observatorio de estudiantes</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/dashboard">Inicio</a></li>
+                <% if(tipo.id == 1){ %>
+                <li><a href="/dashboard/cursos">Cursos</a></li>
+                <% } %>
+                <li><a href="/logout">Salir</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/dashboard">Inicio</a></li>
+        <li><a href="/logout">Salir</a></li>
+    </ul>

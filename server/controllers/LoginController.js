@@ -1,8 +1,11 @@
-var express = require('express');
-var loginRouter = express.Router();
+const express = require('express');
+const loginRouter = express.Router();
 const UsuarioRepository = require('./../models/repository/UsuarioRepository.js');
+const GruposRepository = require('./../models/repository/GruposRepository.js');
 
 var usuarioRepository = new UsuarioRepository();
+var gruposRepository = new GruposRepository();
+
 
 loginRouter.get('/', function (req, res) {
     if(req.session.usuario) res.redirect('/dashboard');
@@ -15,6 +18,11 @@ loginRouter.post('/', async function (req, res) {
     let usuario = await usuarioRepository.getOneCorreo(correo);
     if(usuario){
         if(usuario.password == password){
+            // si es (profesor = 1)
+            if(usuario.tipoUsuario.id == 1){
+                let grupos = await gruposRepository.getGrupos(usuario.id);
+                usuario.addGrupos(grupos);
+            }
             req.session.usuario = usuario;
         }
     }

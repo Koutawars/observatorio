@@ -65,7 +65,11 @@ app.get('/logout', (req, res) => {
 app.get('/', (req, res) => {
     res.redirect("dashboard");
 });
-  
+
+app.get('*', function(req, res){
+    res.status(404).render('404');
+});
+
 app.listen(process.env.PORT || 5000, function () {
     console.log('escuchando en '+ (process.env.PORT || 5000));
 });

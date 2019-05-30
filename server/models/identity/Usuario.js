@@ -12,6 +12,10 @@ class Usuario {
         this.password = password;
         this.tipoUsuario = tipoUsuario;
     }
+
+    addGrupos(grupos){
+        this.grupos = grupos;
+    }
 }
 
 module.exports = Usuario;

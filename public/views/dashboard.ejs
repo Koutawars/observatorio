@@ -12,30 +12,17 @@
 </head>
 
 <body>
-    <nav class="darken-1 teal">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Observatorio de estudiantes</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/logout">Salir</a></li>
-            </ul>
-        </div>
-    </nav>
+    <%- include('nav', {tipo: usuario.tipoUsuario }); %>
     <div class="section"></div>
 
     <div class="container">
         <div class="row">
-            <div class="col s12">
-                <div class="center">
-                    <h2 id="welcome"></h2>
-                </div>
-            </div>
             <div class="col s12 l3">
-                <img width="100%" src="/img/perfil.png">
-                <label class="center"><span class="name"></span> <span class="lastname"></span></label>
+                <img class="responsive-img hide-on-med-and-down" width="100%" src="/img/slide.png">
             </div>
             <div class="col s12 l9">
                 <ul class="tabs row">
-                    <li class="tab col s3"><a class="darken-1 teal-text" href="#test1">Tu info</a></li>
+                    <li class="tab col s3"><a class="darken-1 teal-text" href="#test1">Información</a></li>
                 </ul>
                 <div id="test1" class="col s12 ">
                     <div id ="info" class="row">
@@ -63,6 +50,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
             <script type="text/javascript" src="/js/jquery.min.js"></script>
             <script type="text/javascript" src="/js/materialize.min.js"></script>
             <script type="text/javascript" src="/js/dashboard.js"></script>

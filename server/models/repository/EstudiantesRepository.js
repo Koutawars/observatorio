@@ -1,5 +1,5 @@
-const con = require('./../../connection.js');
-const Estudiante = require('./../identity/Estudiante.js');
+const con = require('../../connection.js');
+const Estudiante = require('../identity/Estudiante.js');
 
 
 class EstudianteRepository{

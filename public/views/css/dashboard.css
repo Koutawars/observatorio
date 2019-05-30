@@ -1,3 +1,14 @@
 div#info span {
     margin-bottom: 12px;
 }
+@media (max-width: 600px) {
+    .brand-logo{
+        font-size: 1.1rem!important;
+    }
+}
+
+@media (max-width: 800px) {
+    .brand-logo{
+        font-size: 1.5rem!important;
+    }
+}
