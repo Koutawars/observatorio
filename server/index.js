@@ -4,6 +4,13 @@ var app = express();
 var public = '/../public';
 var body_parser = require('body-parser');
 var session = require('express-session');
+
+/* ---------- Controllers ------------ */
+
+var loginController = require('./controllers/LoginController.js');
+
+
+/* ---------- Controllers ------------ */
   
 app.use(express.json());
 app.use(express.urlencoded({extended: true }));
@@ -21,6 +28,11 @@ app.use(session({
   })
 );
 
+/*  --------- Routes ----------- */
+
+app.use('/', loginController);
+
+/*  --------- Routes ----------- */
 
 var sessionChecker = (req, res, next) => {
     if (req.session.user) {
@@ -42,10 +54,15 @@ app.use('/css',express.static(path.resolve(__dirname + public + '/views/css')));
 app.use('/js',express.static(path.resolve(__dirname + public + '/views/js'))); // direccion del javascript
 app.use('/img',express.static(path.resolve(__dirname + public + '/views/img'))); // direccion de las imagenes
 
+
+
+/*
 app.get('/logout', sessionChecker2, (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
+
+*/
 
 app.get('/', (req, res) => {
     res.render("index");

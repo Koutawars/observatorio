@@ -4,7 +4,7 @@ class Usuario {
     constructor(){
 
     }
-
+    
     constructor(id, nombre, apellido, direccion, correo, telefono, tipoUsuario){
         this.id = id;
         this.nombre = nombre;
