@@ -12,7 +12,6 @@ $(document).ready(function(){
 			contentType: "application/json",
 			datatype: "JSON",
 			success: function(data, status, jqXHR){
-				console.log(data);
 				if(data){
 					window.location.replace("/dashboard");
 				}else{

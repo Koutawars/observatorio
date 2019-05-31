@@ -18,10 +18,11 @@ loginRouter.post('/', async function (req, res) {
     let usuario = await usuarioRepository.getOneCorreo(correo);
     if(usuario){
         if(usuario.password == password){
-            // si es (profesor = 1)
             if(usuario.tipoUsuario.id == 1){
                 let grupos = await gruposRepository.getGrupos(usuario.id);
-                usuario.addGrupos(grupos);
+                let gruposDemas = await gruposRepository.getGruposN(usuario.id);
+                usuario.grupos = grupos;
+                usuario.gruposDemas = gruposDemas;
             }
             req.session.usuario = usuario;
         }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta content="text/html;" http-equiv="content-type" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/tabla.css">
+    <title>Grupo</title>
+</head>
+
+<body>
+    <%- include('nav', {tipo: usuario.tipoUsuario }); %>
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h5>Grupos</h5>
+            </div>
+            <div class="col s12">
+                <table class="highlight responsive-table">
+                    <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < grupo.length; i++) {%>
+                            <tr name = "<%= grupo[i].idestudiante %>">
+                                <td><%= grupo[i].nombre %></td>
+                                <td><%= grupo[i].apellido %></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+            <script type="text/javascript" src="/js/jquery.min.js"></script>
+            <script type="text/javascript" src="/js/materialize.min.js"></script>
+            <script type="text/javascript" src="/js/grupo.js"></script>
+
+</body>
+
+</html>

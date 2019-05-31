@@ -23,10 +23,10 @@ class GrupoRepository {
 
     async getGruposN(id) {
         return await con.query(`
-            SELECT * FROM grupos
+            SELECT * FROM grupo
              inner join
              usuario_asignatura_grupo on
-             grupos.idgrupo = usuario_asignatura_grupo.grupo_idgrupo
+             grupo.idgrupo = usuario_asignatura_grupo.grupo_idgrupo
              where usuario_asignatura_grupo.usuario_id != ${id} ;
              `).then(function (result) {
             var grupos = [];
