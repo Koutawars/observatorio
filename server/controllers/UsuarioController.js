@@ -4,7 +4,7 @@ const EstudiantesRepository = require('./../models/repository/EstudiantesReposit
 const ObservacionesRepository = require('./../models/repository/ObservacionesRepository.js');
 
 estudiantesRepository = new EstudiantesRepository();
-OboservacionesRepository = new ObservacionesRepository();
+observacionesRepository = new ObservacionesRepository();
 
 usuarioRouter.get('/', function (req, res) {
   res.render('dashboard', {usuario:req.session.usuario});
@@ -27,7 +27,8 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
   let estudiante = await estudiantesRepository.getOne(id).catch((e) => {
     res.status(404).render('404');
   });
-  res.render('estudiante', {usuario:req.session.usuario, estudiante});
+  let observaciones = await observacionesRepository.getObservaciones(estudiante.idestudiante);
+  res.render('estudiante', {usuario:req.session.usuario, estudiante, observaciones});
 });
 
 
