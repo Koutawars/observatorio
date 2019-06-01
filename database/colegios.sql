@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2019 a las 05:09:13
+-- Tiempo de generación: 01-06-2019 a las 05:54:35
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.1.12
 
@@ -67,13 +67,6 @@ CREATE TABLE `asignatura` (
   `nombre_asignatura` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `asignatura`
---
-
-INSERT INTO `asignatura` (`idasignatura`, `nombre_asignatura`) VALUES
-(1, 'Matematica');
-
 -- --------------------------------------------------------
 
 --
@@ -127,13 +120,6 @@ CREATE TABLE `estudiante` (
   `grupo_idgrupo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `estudiante`
---
-
-INSERT INTO `estudiante` (`idestudiante`, `nombre`, `apellido`, `grupo_idgrupo`) VALUES
-(1, 'Anderson', 'Hernandez', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -158,13 +144,6 @@ CREATE TABLE `grado` (
   `grado` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `grado`
---
-
-INSERT INTO `grado` (`idgrado`, `grado`) VALUES
-(1, 'Quinto');
-
 -- --------------------------------------------------------
 
 --
@@ -177,13 +156,6 @@ CREATE TABLE `grupo` (
   `grado_idgrado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `grupo`
---
-
-INSERT INTO `grupo` (`idgrupo`, `salon`, `grado_idgrado`) VALUES
-(1, 'S103 sur', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -192,12 +164,13 @@ INSERT INTO `grupo` (`idgrupo`, `salon`, `grado_idgrado`) VALUES
 
 CREATE TABLE `observacion` (
   `idobservacion` int(11) NOT NULL,
-  `fecha` date DEFAULT NULL,
-  `descripcion` varchar(1000) DEFAULT NULL,
+  `fecha` date NOT NULL,
+  `descripcion` varchar(1000) NOT NULL,
   `tipo_observacion_idtipo_observacion` int(11) NOT NULL,
   `estudiante_idestudiante` int(11) NOT NULL,
-  `reporte_idreporte` int(11) NOT NULL,
-  `vision_idvision` int(11) NOT NULL
+  `reporte_idreporte` int(11) DEFAULT NULL,
+  `vision_idvision` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -245,13 +218,6 @@ CREATE TABLE `tipo_usuario` (
   `nombre_tipo_usuario` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `tipo_usuario`
---
-
-INSERT INTO `tipo_usuario` (`idtipo_usuario`, `nombre_tipo_usuario`) VALUES
-(1, 'Profesor');
-
 -- --------------------------------------------------------
 
 --
@@ -270,13 +236,6 @@ CREATE TABLE `usuario` (
   `password` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `direccion`, `correo`, `telefono`, `tipo_usuario_idtipo_usuario`, `documento`, `password`) VALUES
-(1, 'Kevin', 'Urieles', 'cra 7', 'admin', 323656, 1, 54545654, 'admin');
-
 -- --------------------------------------------------------
 
 --
@@ -288,13 +247,6 @@ CREATE TABLE `usuario_asignatura_grupo` (
   `asignatura_idasignatura` int(11) NOT NULL,
   `grupo_idgrupo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `usuario_asignatura_grupo`
---
-
-INSERT INTO `usuario_asignatura_grupo` (`usuario_id`, `asignatura_idasignatura`, `grupo_idgrupo`) VALUES
-(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -396,7 +348,8 @@ ALTER TABLE `observacion`
   ADD KEY `fk_observacion_tipo_observacion1_idx` (`tipo_observacion_idtipo_observacion`),
   ADD KEY `fk_observacion_estudiante1_idx` (`estudiante_idestudiante`),
   ADD KEY `fk_observacion_reporte1_idx` (`reporte_idreporte`),
-  ADD KEY `fk_observacion_vision1_idx` (`vision_idvision`);
+  ADD KEY `fk_observacion_vision1_idx` (`vision_idvision`),
+  ADD KEY `fk_observacion_usuario1_idx` (`usuario_id`);
 
 --
 -- Indices de la tabla `reporte`
@@ -611,6 +564,7 @@ ALTER TABLE `observacion`
   ADD CONSTRAINT `fk_observacion_estudiante1` FOREIGN KEY (`estudiante_idestudiante`) REFERENCES `estudiante` (`idestudiante`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_observacion_reporte1` FOREIGN KEY (`reporte_idreporte`) REFERENCES `reporte` (`idreporte`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_observacion_tipo_observacion1` FOREIGN KEY (`tipo_observacion_idtipo_observacion`) REFERENCES `tipo_observacion` (`idtipo_observacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_observacion_usuario1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_observacion_vision1` FOREIGN KEY (`vision_idvision`) REFERENCES `vision` (`idvision`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
