@@ -1,8 +1,10 @@
 var express = require('express');
 var usuarioRouter = express.Router();
 const EstudiantesRepository = require('./../models/repository/EstudiantesRepository.js');
+const ObservacionesRepository = require('./../models/repository/ObservacionesRepository.js');
 
 estudiantesRepository = new EstudiantesRepository();
+OboservacionesRepository = new ObservacionesRepository();
 
 usuarioRouter.get('/', function (req, res) {
   res.render('dashboard', {usuario:req.session.usuario});

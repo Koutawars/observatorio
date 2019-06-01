@@ -2,7 +2,7 @@ const con = require('../../connection.js');
 const Estudiante = require('../identity/Obervacion.js');
 
 
-class ObervacionesRepository{
+class ObservacionesRepository {
 
     async getObervaciones(id){
         return await con.query(`
@@ -25,4 +25,4 @@ class ObervacionesRepository{
 
 
 }
-module.exports = ObervacionesRepository;
+module.exports = ObservacionesRepository;
