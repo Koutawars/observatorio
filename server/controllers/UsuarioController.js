@@ -6,6 +6,7 @@ const VisionRepository = require('./../models/repository/VisionRepository.js');
 const TipoObsRepository = require('./../models/repository/TipoObsRepository.js');
 
 
+
 const security = require('./../security.js');
 
 let estudiantesRepository = new EstudiantesRepository();
@@ -48,7 +49,19 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
 
 usuarioRouter.post('/estudiante/:id/add', async function (req, res) {
   let id = req.params.id;
-  console.log(req.body);
+  let usuario_id = req.session.usuario.id;
+  let observacion = {
+    fecha: req.body.fecha, 
+    descripcion: req.body.contenido, 
+    tipo_observacion_id: req.body.tipo,
+    estudiante_idestudiante: id,
+    vision_idvision: req.body.visiblidad,
+    usuario_id
+  };
+  observacion = await observacionesRepository.SetObservacion(observacion).catch(e => {
+    console.log(e);
+  });
+  res.end(JSON.stringify(observacion));
 });
 
 

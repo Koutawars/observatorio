@@ -1,8 +1,8 @@
 
 
 class TipoObs {
-    constructor(idtipo_observacion, observacion){
-        this.id_observacion = idtipo_observacion;
+    constructor(id_observacion, observacion){
+        this.id_observacion = id_observacion;
         this.observacion = observacion;
     }
 }

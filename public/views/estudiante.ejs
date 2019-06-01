@@ -45,12 +45,18 @@
                     <table class="highlight responsive-table">
                         <thead>
                             <tr>
-                                <th>Detalle</th>
+                                <th>Fecha</th>
+                                <th>Descripción</th>
+                                <th>Tipo</th>
                             </tr>
                         </thead>
                         <tbody>
                             <% for(var i = 0; i < observaciones.length; i++) { %>
-
+                                <tr name="<%= observaciones[i].idobservacion %>">
+                                    <td><%= observaciones[i].fecha.toDateString() %></td>
+                                    <td><%= observaciones[i].descripcion %></td>
+                                    <td><%= observaciones[i].nombreObs %></td>
+                                </tr>
                             <% } %>
                         <tbody>
                     </table>
@@ -69,7 +75,7 @@
                         </thead>
                         <tbody>
                             <% for(var i = 0; i < observaciones.length; i++) { %>
-
+                                
                             <% } %>
                         <tbody>
                     </table>
@@ -96,8 +102,7 @@
                                 <% for(var i = 0; i < tipoObs.length; i++) { %>
                                     <p>
                                         <label>
-                                        <% console.log(tipoObs[i]); %>
-                                            <input value="<%= tipoObs[i].idtipo_observacion %>" name="tipo" type="radio" <% if(i == 0){ %>checked <% } %> />
+                                            <input value="<%= tipoObs[i].id_observacion %>" name="tipo" type="radio" <% if(i == 0){ %>checked <% } %> />
                                             <span><%= tipoObs[i].observacion %></span>
                                         </label>
                                     </p>

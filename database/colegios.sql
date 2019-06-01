@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2019 a las 06:22:44
+-- Tiempo de generación: 01-06-2019 a las 08:46:46
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.1.12
 
@@ -67,6 +67,13 @@ CREATE TABLE `asignatura` (
   `nombre_asignatura` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `asignatura`
+--
+
+INSERT INTO `asignatura` (`idasignatura`, `nombre_asignatura`) VALUES
+(2, 'matematica');
+
 -- --------------------------------------------------------
 
 --
@@ -120,6 +127,13 @@ CREATE TABLE `estudiante` (
   `grupo_idgrupo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `estudiante`
+--
+
+INSERT INTO `estudiante` (`idestudiante`, `nombre`, `apellido`, `grupo_idgrupo`) VALUES
+(2, 'Anderson', 'H', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -144,6 +158,13 @@ CREATE TABLE `grado` (
   `grado` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `grado`
+--
+
+INSERT INTO `grado` (`idgrado`, `grado`) VALUES
+(2, '5to');
+
 -- --------------------------------------------------------
 
 --
@@ -155,6 +176,14 @@ CREATE TABLE `grupo` (
   `salon` varchar(45) NOT NULL,
   `grado_idgrado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `grupo`
+--
+
+INSERT INTO `grupo` (`idgrupo`, `salon`, `grado_idgrado`) VALUES
+(2, 'SNS 103', 2),
+(3, 'SNS 202', 2);
 
 -- --------------------------------------------------------
 
@@ -172,6 +201,13 @@ CREATE TABLE `observacion` (
   `vision_idvision` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `observacion`
+--
+
+INSERT INTO `observacion` (`idobservacion`, `fecha`, `descripcion`, `tipo_observacion_idtipo_observacion`, `estudiante_idestudiante`, `reporte_idreporte`, `vision_idvision`, `usuario_id`) VALUES
+(1, '1996-12-10', 'asd', 1, 2, NULL, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -196,6 +232,14 @@ CREATE TABLE `tipo_observacion` (
   `observacion` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `tipo_observacion`
+--
+
+INSERT INTO `tipo_observacion` (`idtipo_observacion`, `observacion`) VALUES
+(1, 'buena'),
+(2, 'mala');
+
 -- --------------------------------------------------------
 
 --
@@ -218,6 +262,13 @@ CREATE TABLE `tipo_usuario` (
   `nombre_tipo_usuario` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `tipo_usuario`
+--
+
+INSERT INTO `tipo_usuario` (`idtipo_usuario`, `nombre_tipo_usuario`) VALUES
+(2, 'Profesor');
+
 -- --------------------------------------------------------
 
 --
@@ -236,6 +287,13 @@ CREATE TABLE `usuario` (
   `password` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `direccion`, `correo`, `telefono`, `tipo_usuario_idtipo_usuario`, `documento`, `password`) VALUES
+(2, 'Kevin', 'Urieles', 'cra 7', 'admin', 6565, 2, 5454155, 'admin');
+
 -- --------------------------------------------------------
 
 --
@@ -248,6 +306,13 @@ CREATE TABLE `usuario_asignatura_grupo` (
   `grupo_idgrupo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `usuario_asignatura_grupo`
+--
+
+INSERT INTO `usuario_asignatura_grupo` (`usuario_id`, `asignatura_idasignatura`, `grupo_idgrupo`) VALUES
+(2, 2, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -258,6 +323,15 @@ CREATE TABLE `vision` (
   `idvision` int(11) NOT NULL,
   `nivel` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `vision`
+--
+
+INSERT INTO `vision` (`idvision`, `nivel`) VALUES
+(1, 'publica'),
+(2, 'privada'),
+(4, 'protegida');
 
 --
 -- Índices para tablas volcadas
@@ -420,7 +494,7 @@ ALTER TABLE `acuerdo`
 -- AUTO_INCREMENT de la tabla `asignatura`
 --
 ALTER TABLE `asignatura`
-  MODIFY `idasignatura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idasignatura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
@@ -444,7 +518,7 @@ ALTER TABLE `estimulo`
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  MODIFY `idestudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idestudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `evidencia`
@@ -456,19 +530,19 @@ ALTER TABLE `evidencia`
 -- AUTO_INCREMENT de la tabla `grado`
 --
 ALTER TABLE `grado`
-  MODIFY `idgrado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idgrado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `grupo`
 --
 ALTER TABLE `grupo`
-  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `observacion`
 --
 ALTER TABLE `observacion`
-  MODIFY `idobservacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idobservacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `reporte`
@@ -480,7 +554,7 @@ ALTER TABLE `reporte`
 -- AUTO_INCREMENT de la tabla `tipo_observacion`
 --
 ALTER TABLE `tipo_observacion`
-  MODIFY `idtipo_observacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtipo_observacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_reporte`
@@ -492,19 +566,19 @@ ALTER TABLE `tipo_reporte`
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `idtipo_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idtipo_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `vision`
 --
 ALTER TABLE `vision`
-  MODIFY `idvision` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idvision` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
