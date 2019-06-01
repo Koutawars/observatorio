@@ -45,6 +45,7 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
   let reportes = await reporteRepository.getReportes(id);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   var observaciones;
   if(req.session.usuario.tipoUsuario.nombre.toLowerCase() == constantes.PROFESOR ){
     observaciones = await observacionesRepository.getObservaciones(estudiante.idestudiante, req.session.usuario.id);
@@ -58,6 +59,9 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
 =======
 >>>>>>> parent of 8fc937b... XD
 
+=======
+  
+>>>>>>> parent of 8da907c... XD
   res.render('estudiante', {
     usuario:req.session.usuario, 
     estudiante, 
