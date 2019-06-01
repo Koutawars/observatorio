@@ -62,11 +62,14 @@ $(document).ready(function(){
                 success: function(data){
                     data = JSON.parse(data);
                     let text = '';
+                    console.log(data);
                     text += `
                     <tr name="${data.idreporte}">
                         <td>${data.fecha}</td>
+                        <td>${data.nombreTipo}</td>
                     </tr>
                     `;
+                    $('#report').append(text);  
                     M.toast({html: 'se agrego reporte con éxito'});
                 },
                 error: function(jqXHR , status, e){

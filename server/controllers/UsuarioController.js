@@ -43,7 +43,8 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
   let tipoObs = await tipoObsRepository.getTipoObs();
   let tipoReporte = await tipoReporteRepository.getTipoReporte();
   let reportes = await reporteRepository.getReportes(id);
-  
+  console.log(reportes);
+
   res.render('estudiante', {
     usuario:req.session.usuario, 
     estudiante, 

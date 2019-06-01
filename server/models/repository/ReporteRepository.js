@@ -34,7 +34,7 @@ class ReporteRepository {
              return reportes;
         });
     }
-    async SetReporte(ob){
+    async SetReporte(tipo){
         return await con.query(`
             INSERT INTO reporte (idreporte, fecha, tipo_reporte_idtipo_reporte)
             VALUES (NULL, NOW(), '${tipo}');

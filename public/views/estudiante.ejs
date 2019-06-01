@@ -79,6 +79,7 @@
                             <% for(var i = 0; i < reportes.length; i++) { %>
                                 <tr name="<%= reportes[i].idreporte %>">
                                     <td><%= reportes[i].fecha.toDateString() %></td>
+                                    <td><%= reportes[i].nombreTipo %></td>
                                 </tr>
                             <% } %>
                         <tbody>
