@@ -43,6 +43,7 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
   let tipoObs = await tipoObsRepository.getTipoObs();
   let tipoReporte = await tipoReporteRepository.getTipoReporte();
   let reportes = await reporteRepository.getReportes(id);
+<<<<<<< HEAD
   var observaciones;
   if(req.session.usuario.tipoUsuario.nombre.toLowerCase() == constantes.PROFESOR ){
     observaciones = await observacionesRepository.getObservaciones(estudiante.idestudiante, req.session.usuario.id);
@@ -50,6 +51,9 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
   if(req.session.usuario.tipoUsuario.nombre.toLowerCase() == constantes.DIRECTOR ){
     observaciones = await observacionesRepository.getObservacionesTodas(estudiante.idestudiante, req.session.usuario.id);
   }
+=======
+  console.log(reportes);
+>>>>>>> parent of 00cb732... XD
 
   res.render('estudiante', {
     usuario:req.session.usuario, 
@@ -73,7 +77,7 @@ usuarioRouter.post('/estudiante/:id/add', async function (req, res) {
     vision_idvision: req.body.visiblidad,
     usuario_id
   };
-  await observacionesRepository.SetObservacion(observacion).catch(e => {
+  observacion = await observacionesRepository.SetObservacion(observacion).catch(e => {
     console.log(e);
   });
   res.end(JSON.stringify(observacion));
@@ -92,7 +96,7 @@ usuarioRouter.post('/estudiante/:id/addReporte', async function (req, res) {
   req.body.observaciones.forEach(async (e) => {
     await observacionesRepository.UpdateObservacion(reporte, e);
   });
-  let retornar = await reporteRepository.getReportesById(reporte);
+  let retornar = await observacionesRepository.getReportesById(reporte);
   res.end(JSON.stringify(retornar));
 });
 

@@ -16,7 +16,6 @@ class ObservacionesRepository {
             var temp;
             
             result.forEach(element => {
-                element.fecha = element.fecha;
                 temp = new Obervacion(element.idobservacion, element.fecha, element.descripcion, element.tipo_observacion_idtipo_observacion, element.estudiante_idestudiante, element.reporte_idreporte, element.vision_idvision, element.usuario_id, element.observacion);
                 observaciones.push(temp);
             });
@@ -107,12 +106,8 @@ class ObservacionesRepository {
         return await con.query(`
             INSERT INTO observacion (idobservacion, fecha, descripcion, tipo_observacion_idtipo_observacion, estudiante_idestudiante, reporte_idreporte, vision_idvision, usuario_id)
             VALUES (NULL, '${ob.fecha}', '${ob.descripcion}', '${ob.tipo_observacion_id}', '${ob.estudiante_idestudiante}', NULL, '${ob.vision_idvision}', '${ob.usuario_id}');
-        `).then(async function(result){
-             return await con.query(`
-             SELECT LAST_INSERT_ID() as id;
-                `).then(function(result){
-                    return result[0].id;
-                });
+        `).then(function(result){
+             return true;
         });
     }
 
