@@ -6,7 +6,7 @@ class ReporteRepository {
 
     async getReportes(id){
         return await con.query(`
-            SELECT * FROM reporte where reporte.idreporte=${id};
+            SELECT * FROM reporte INNER JOIN observacion on reporte.idreporte = observacion.reporte_idreporte where observacion.estudiante_idestudiante=${id};
         `).then(function(result){
 
             var reportes = [];
