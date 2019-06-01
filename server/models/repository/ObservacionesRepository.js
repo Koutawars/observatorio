@@ -22,25 +22,6 @@ class ObservacionesRepository {
              return observaciones;
         });
     }
-    async getObservacionesTodas(id){
-        return await con.query(`
-            SELECT * FROM observacion
-            INNER JOIN estudiante ON estudiante.idestudiante = observacion.estudiante_idestudiante
-            INNER JOIN tipo_observacion ON tipo_observacion.idtipo_observacion = observacion.tipo_observacion_idtipo_observacion
-            where estudiante.idestudiante = ${id} ;
-        `).then(function(result){
-
-            var observaciones = [];
-            var temp;
-            
-            result.forEach(element => {
-                element.fecha = element.fecha;
-                temp = new Obervacion(element.idobservacion, element.fecha, element.descripcion, element.tipo_observacion_idtipo_observacion, element.estudiante_idestudiante, element.reporte_idreporte, element.vision_idvision, element.usuario_id, element.observacion);
-                observaciones.push(temp);
-            });
-             return observaciones;
-        });
-    }
     async getObservacionesNoPrivadas(){
         return await con.query(`
             SELECT * FROM observacion

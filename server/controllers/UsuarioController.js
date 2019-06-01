@@ -6,7 +6,6 @@ const VisionRepository = require('./../models/repository/VisionRepository.js');
 const TipoObsRepository = require('./../models/repository/TipoObsRepository.js');
 const ReporteRepository = require('./../models/repository/ReporteRepository.js');
 const TipoReporteRepository = require('../models/repository/TipoReporteRepository.js');
-const constantes = require('./../constantes.js');
 
 
 const security = require('./../security.js');
@@ -39,10 +38,12 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
   let estudiante = await estudiantesRepository.getOne(id).catch((e) => {
     res.status(404).render('404');
   });
+  let observaciones = await observacionesRepository.getObservaciones(estudiante.idestudiante, req.session.usuario.id);
   let tipoVision = await visionRepository.getVisiones();
   let tipoObs = await tipoObsRepository.getTipoObs();
   let tipoReporte = await tipoReporteRepository.getTipoReporte();
   let reportes = await reporteRepository.getReportes(id);
+<<<<<<< HEAD
 <<<<<<< HEAD
   var observaciones;
   if(req.session.usuario.tipoUsuario.nombre.toLowerCase() == constantes.PROFESOR ){
@@ -54,6 +55,8 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
 =======
   console.log(reportes);
 >>>>>>> parent of 00cb732... XD
+=======
+>>>>>>> parent of 8fc937b... XD
 
   res.render('estudiante', {
     usuario:req.session.usuario, 
