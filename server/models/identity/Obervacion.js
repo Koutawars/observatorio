@@ -1,6 +1,6 @@
 
 class Observacion {
-    constructor(idobservacion, fecha,descripcion, tipo_observacion_idtipo_observacion, estudiante_idestudiante,reporte_idreporte,vision_idvision, usuario_id, nombreObs  ){
+    constructor(idobservacion, fecha,descripcion, tipo_observacion_idtipo_observacion, estudiante_idestudiante,reporte_idreporte,vision_idvision, usuario_id, nombreObs=null ){
         this.idobservacion = idobservacion;
         this.fecha = fecha;
         this.descripcion = descripcion;
