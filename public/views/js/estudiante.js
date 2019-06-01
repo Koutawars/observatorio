@@ -5,6 +5,7 @@ $(document).ready(function(){
     $('.modal').modal();
     $('.tooltipped').tooltip();
     $('.datepicker').datepicker();
+
     $('#reportes').on('click', 'tr', function(){
         let id = this.getAttribute("name");
         if(selects[id]){
@@ -15,6 +16,7 @@ $(document).ready(function(){
             this.setAttribute("class", "indigo lighten-4");
         }
     });
+
     $('#reporte').on('click', function(){
         $.ajax({
             method: "GET",
@@ -47,7 +49,23 @@ $(document).ready(function(){
                 observaciones.push(index);
             }
         });
+        let json = JSON.stringify(observaciones);
         console.log(observaciones);
+        $.ajax({
+            method: "POST",
+            url: window.location.pathname + "/addReporte",
+            data: json,
+            contentType: "application/json",
+            datatype: "JSON",
+            success: function(data){
+                M.toast({html: 'Agregada observación con éxito'});
+            },
+            error: function(jqXHR , status, e){
+                M.toast({html: 'Error a Agregada observación status: '+jqXHR.status});
+                console.log(jqXHR);
+            }
+        });
+
     });
     $('#enviar').on('click', function(){
         let contenido = $('#observacion').val();

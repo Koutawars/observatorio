@@ -35,7 +35,7 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
   let estudiante = await estudiantesRepository.getOne(id).catch((e) => {
     res.status(404).render('404');
   });
-  let observaciones = await observacionesRepository.getObservaciones(estudiante.idestudiante);
+  let observaciones = await observacionesRepository.getObservaciones(estudiante.idestudiante, req.session.usuario.id);
   let tipoVision = await visionRepository.getVisiones();
   let tipoObs = await tipoObsRepository.getTipoObs();
   res.render('estudiante', {
@@ -70,6 +70,16 @@ usuarioRouter.get('/estudiante/:id/sinReporte', async function (req, res) {
     console.log(e);
   });
   res.end(JSON.stringify(observaciones));
+});
+
+usuarioRouter.post('/estudiante/:id/addReporte', async function (req, res) {
+  console.log(res.body);
+  /*
+  let observaciones = await observacionesRepository.getObservacionesNoReporte(id).catch(e => {
+    console.log(e);
+  });
+  res.end(JSON.stringify(observaciones));
+  */
 });
 
 module.exports = usuarioRouter;
