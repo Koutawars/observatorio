@@ -49,22 +49,25 @@ $(document).ready(function(){
                 observaciones.push(index);
             }
         });
-        let json = JSON.stringify(observaciones);
-        console.log(observaciones);
-        $.ajax({
-            method: "POST",
-            url: window.location.pathname + "/addReporte",
-            data: json,
-            contentType: "application/json",
-            datatype: "JSON",
-            success: function(data){
-                M.toast({html: 'Agregada observación con éxito'});
-            },
-            error: function(jqXHR , status, e){
-                M.toast({html: 'Error a Agregada observación status: '+jqXHR.status});
-                console.log(jqXHR);
-            }
-        });
+        let tipoReporte = $('input:radio[name=tipoReporte]:checked').val();
+        let json = JSON.stringify({observaciones, tipoReporte});
+        if(selects.length > 0){
+            console.log(json);
+            $.ajax({
+                method: "POST",
+                url: window.location.pathname + "/addReporte",
+                data: json,
+                contentType: "application/json",
+                datatype: "JSON",
+                success: function(data){
+                    M.toast({html: 'Agregada observación con éxito'});
+                },
+                error: function(jqXHR , status, e){
+                    M.toast({html: 'Error a Agregada observación status: '+jqXHR.status});
+                    console.log(jqXHR);
+                }
+            });
+        }
 
     });
     $('#enviar').on('click', function(){

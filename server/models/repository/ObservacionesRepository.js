@@ -66,7 +66,7 @@ class ObservacionesRepository {
          SET observacion.reporte_idreporte = ${idReporte}
          WHERE observacion.idobservacion = ${ID_ob};
         `).then(function(result){
-             return true;
+            return true;
         });
     }
 

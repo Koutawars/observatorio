@@ -4,7 +4,7 @@ const TipoReporte = require('../identity/TipoReporte.js');
 
 class TipoReporteRepository {
 
-    async gettipoReporte(id){
+    async getTipoReporte(){
         return await con.query(`
             SELECT * FROM tipo_reporte;
         `).then(function(result){
