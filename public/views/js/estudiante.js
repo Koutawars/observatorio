@@ -1,19 +1,53 @@
+var selects = [];
 $(document).ready(function(){
     $('.tabs').tabs();
     $('.sidenav').sidenav();
     $('.modal').modal();
     $('.tooltipped').tooltip();
     $('.datepicker').datepicker();
+    $('#reportes').on('click', 'tr', function(){
+        let id = this.getAttribute("name");
+        if(selects[id]){
+            selects[id] = false;
+            this.setAttribute("class", "white");
+        }else{
+            selects[id] = true;
+            this.setAttribute("class", "indigo lighten-4");
+        }
+    });
     $('#reporte').on('click', function(){
         $.ajax({
             method: "GET",
             url: window.location.pathname + "/sinReporte",
             success: function(data){
+                data = JSON.parse(data);
+                let text = "";
+                data.forEach(e => {
+                    selects[e.idobservacion] = false;
+                    text += `
+                    <tr name="${e.idobservacion}">
+                        <td>${e.fecha}</td>
+                        <td>${e.descripcion}</td>
+                        <td>${e.nombreObs}</td>
+                    </tr>
+                    `;
+                });
+                $('#reportes').html(text);
             },
             error: function(e){
                 console.log(e);
             }
         });
+    });
+
+    $('#enviarReporte').on('click', function(){
+        let observaciones = [];
+        selects.forEach((e, index) => {
+            if(e){
+                observaciones.push(index);
+            }
+        });
+        console.log(observaciones);
     });
     $('#enviar').on('click', function(){
         let contenido = $('#observacion').val();

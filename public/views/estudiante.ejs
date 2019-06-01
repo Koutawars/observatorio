@@ -91,19 +91,26 @@
         <div id="modal2" class="modal">
             <div class="modal-content">
                 <h4>Agregar reporte</h4>
+                <!--<%# for(var i = 0; i < tipoReporte.length; i++) { %>
+                    <p>
+                        <label>
+                            <input value="<%# tipoObs[i].id_observacion %>" name="tipoReporte" type="radio" <%# if(i == 0){ %>checked <%# } %> />
+                            <span><%# tipoObs[i].observacion %></span>
+                        </label>
+                    </p>
+                <%# } %> -->
                 <table>
                     <thead>
                         <tr>
-                            <th>Reportes</th>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th>Tipo</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <% for(var i = 0; i < observaciones.length; i++) { %>
-                            
-                        <% } %>
+                    <tbody id = "reportes">
+
                     <tbody>
                 </table>
-
             </div>
             <div class="modal-footer">
                 <a href="#!" id="enviarReporte" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
