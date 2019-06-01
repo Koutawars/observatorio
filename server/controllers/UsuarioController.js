@@ -64,5 +64,8 @@ usuarioRouter.post('/estudiante/:id/add', async function (req, res) {
   res.end(JSON.stringify(observacion));
 });
 
+usuarioRouter.get('/estudiante/:id/sinReporte', async function (req, res) {
+  let id = req.params.id;
+});
 
 module.exports = usuarioRouter;
