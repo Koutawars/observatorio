@@ -5,7 +5,7 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="/dashboard">Inicio</a></li>
-                <% if(tipo.nombre.toLowerCase() == "profesor"){ %>
+                <% if(tipo.nombre.toLowerCase() == "profesor" || tipo.nombre.toLowerCase() == "director" ){ %>
                 <li><a href="/dashboard/grupos">Grupos</a></li>
                 <% } %>
                 <li><a href="/logout">Salir</a></li>

@@ -24,6 +24,11 @@ loginRouter.post('/', async function (req, res) {
                 let gruposDemas = await gruposRepository.getGruposN(usuario.id);
                 usuario.grupos = grupos;
                 usuario.gruposDemas = gruposDemas;
+                console.log({grupos, gruposDemas});
+            }
+            if(usuario.tipoUsuario.nombre.toLowerCase() == constantes.DIRECTOR){
+                let grupos = await gruposRepository.getGruposTodos(usuario.id);
+                usuario.grupos = grupos;
             }
             req.session.usuario = usuario;
         }

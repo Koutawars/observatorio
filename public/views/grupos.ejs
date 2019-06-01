@@ -37,12 +37,11 @@
                                 </tr>
                             <% } %>
                         <% } %>
-
                         <% if(usuario.gruposDemas) { %>
                             <% for(var i = 0; i < usuario.gruposDemas.length; i++) { %>
-                                <tr name = "<%= usuario.grupos[i].idgrupo %>">
-                                    <td><%= usuario.gruposDemas[i].nombre %></td>
-                                    <td><%= usuario.gruposDemas[i].apellido %></td>
+                                <tr name = "<%= usuario.gruposDemas[i].idgrupo %>">
+                                    <td><%= usuario.gruposDemas[i].idgrupo %></td>
+                                    <td><%= usuario.gruposDemas[i].salon %></td>
                                     <td><%= usuario.gruposDemas[i].grado %></td>
                                 </tr>
                             <% } %>

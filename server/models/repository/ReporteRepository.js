@@ -6,7 +6,11 @@ class ReporteRepository {
 
     async getReportes(id){
         return await con.query(`
-            SELECT * FROM reporte INNER JOIN observacion on reporte.idreporte = observacion.reporte_idreporte INNER JOIN tipo_reporte on tipo_reporte.idtipo_reporte = reporte.tipo_reporte_idtipo_reporte where observacion.estudiante_idestudiante=${id};
+            SELECT * FROM reporte 
+            INNER JOIN observacion on reporte.idreporte = observacion.reporte_idreporte 
+            INNER JOIN tipo_reporte on tipo_reporte.idtipo_reporte = reporte.tipo_reporte_idtipo_reporte 
+            where observacion.estudiante_idestudiante=${id}
+            GROUP BY reporte.idreporte;
         `).then(function(result){
 
             var reportes = [];
@@ -19,6 +23,7 @@ class ReporteRepository {
              return reportes;
         });
     }
+
     async getReportesById(id){
         return await con.query(`
             SELECT * FROM reporte INNER JOIN tipo_reporte on tipo_reporte.idtipo_reporte = reporte.tipo_reporte_idtipo_reporte   where reporte.idreporte=${id};

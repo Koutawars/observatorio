@@ -2,7 +2,8 @@ var security = {};
 const constantes = require('./constantes.js');
 
 security.profesor = (req, res, next) => {
-    if(req.session.usuario.tipoUsuario.nombre.toLowerCase() == constantes.PROFESOR){
+    if(req.session.usuario.tipoUsuario.nombre.toLowerCase() == constantes.PROFESOR || 
+    req.session.usuario.tipoUsuario.nombre.toLowerCase() == constantes.DIRECTOR ){
         next();
     }else{
         res.redirect('/dashboard');
