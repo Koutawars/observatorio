@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2019 a las 18:33:32
+-- Tiempo de generación: 01-06-2019 a las 05:09:13
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.1.12
 
@@ -67,6 +67,13 @@ CREATE TABLE `asignatura` (
   `nombre_asignatura` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `asignatura`
+--
+
+INSERT INTO `asignatura` (`idasignatura`, `nombre_asignatura`) VALUES
+(1, 'Matematica');
+
 -- --------------------------------------------------------
 
 --
@@ -117,9 +124,15 @@ CREATE TABLE `estudiante` (
   `idestudiante` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `apellido` varchar(45) DEFAULT NULL,
-  `estudiantecol` varchar(45) DEFAULT NULL,
   `grupo_idgrupo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `estudiante`
+--
+
+INSERT INTO `estudiante` (`idestudiante`, `nombre`, `apellido`, `grupo_idgrupo`) VALUES
+(1, 'Anderson', 'Hernandez', 1);
 
 -- --------------------------------------------------------
 
@@ -145,6 +158,13 @@ CREATE TABLE `grado` (
   `grado` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `grado`
+--
+
+INSERT INTO `grado` (`idgrado`, `grado`) VALUES
+(1, 'Quinto');
+
 -- --------------------------------------------------------
 
 --
@@ -154,9 +174,15 @@ CREATE TABLE `grado` (
 CREATE TABLE `grupo` (
   `idgrupo` int(11) NOT NULL,
   `salon` varchar(45) NOT NULL,
-  `grado_idgrado` int(11) NOT NULL,
-  `grupocol` varchar(45) NOT NULL
+  `grado_idgrado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `grupo`
+--
+
+INSERT INTO `grupo` (`idgrupo`, `salon`, `grado_idgrado`) VALUES
+(1, 'S103 sur', 1);
 
 -- --------------------------------------------------------
 
@@ -167,7 +193,7 @@ CREATE TABLE `grupo` (
 CREATE TABLE `observacion` (
   `idobservacion` int(11) NOT NULL,
   `fecha` date DEFAULT NULL,
-  `observacioncol` varchar(45) DEFAULT NULL,
+  `descripcion` varchar(1000) DEFAULT NULL,
   `tipo_observacion_idtipo_observacion` int(11) NOT NULL,
   `estudiante_idestudiante` int(11) NOT NULL,
   `reporte_idreporte` int(11) NOT NULL,
@@ -224,7 +250,7 @@ CREATE TABLE `tipo_usuario` (
 --
 
 INSERT INTO `tipo_usuario` (`idtipo_usuario`, `nombre_tipo_usuario`) VALUES
-(1, 'admin');
+(1, 'Profesor');
 
 -- --------------------------------------------------------
 
@@ -262,6 +288,13 @@ CREATE TABLE `usuario_asignatura_grupo` (
   `asignatura_idasignatura` int(11) NOT NULL,
   `grupo_idgrupo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuario_asignatura_grupo`
+--
+
+INSERT INTO `usuario_asignatura_grupo` (`usuario_id`, `asignatura_idasignatura`, `grupo_idgrupo`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -434,7 +467,7 @@ ALTER TABLE `acuerdo`
 -- AUTO_INCREMENT de la tabla `asignatura`
 --
 ALTER TABLE `asignatura`
-  MODIFY `idasignatura` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idasignatura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
@@ -458,7 +491,7 @@ ALTER TABLE `estimulo`
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  MODIFY `idestudiante` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idestudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `evidencia`
@@ -470,13 +503,13 @@ ALTER TABLE `evidencia`
 -- AUTO_INCREMENT de la tabla `grado`
 --
 ALTER TABLE `grado`
-  MODIFY `idgrado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idgrado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `grupo`
 --
 ALTER TABLE `grupo`
-  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idgrupo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `observacion`

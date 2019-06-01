@@ -3,6 +3,8 @@ var usuarioRouter = express.Router();
 const EstudiantesRepository = require('./../models/repository/EstudiantesRepository.js');
 const ObservacionesRepository = require('./../models/repository/ObservacionesRepository.js');
 
+const security = require('./../security.js');
+
 estudiantesRepository = new EstudiantesRepository();
 observacionesRepository = new ObservacionesRepository();
 
@@ -10,11 +12,11 @@ usuarioRouter.get('/', function (req, res) {
   res.render('dashboard', {usuario:req.session.usuario});
 });
 
-usuarioRouter.get('/grupos', function (req, res) {
+usuarioRouter.get('/grupos', security.profesor, function (req, res) {
   res.render('grupos', {usuario:req.session.usuario});
 });
 
-usuarioRouter.get('/grupos/:idGrupo', async function (req, res) {
+usuarioRouter.get('/grupos/:idGrupo', security.profesor, async function (req, res) {
   let idGrupo = req.params.idGrupo;
   let grupo = await estudiantesRepository.getEstudiantesCurso(idGrupo).catch((e) => {
     res.status(404).render('404');
