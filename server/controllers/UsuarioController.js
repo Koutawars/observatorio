@@ -4,7 +4,8 @@ const EstudiantesRepository = require('./../models/repository/EstudiantesReposit
 const ObservacionesRepository = require('./../models/repository/ObservacionesRepository.js');
 const VisionRepository = require('./../models/repository/VisionRepository.js');
 const TipoObsRepository = require('./../models/repository/TipoObsRepository.js');
-
+const ReporteRepository = require('./../models/repository/ReporteRepository.js');
+const TipoReporteRepository = require('../models/repository/TipoReporteRepository.js');
 
 
 const security = require('./../security.js');
@@ -13,6 +14,8 @@ let estudiantesRepository = new EstudiantesRepository();
 let observacionesRepository = new ObservacionesRepository();
 let visionRepository = new VisionRepository();
 let tipoObsRepository = new TipoObsRepository();
+let reporteRepository = new ReporteRepository();
+let tipoReporteRepository = new TipoReporteRepository();
 
 usuarioRouter.get('/', function (req, res) {
   res.render('dashboard', {usuario:req.session.usuario});
@@ -38,12 +41,17 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
   let observaciones = await observacionesRepository.getObservaciones(estudiante.idestudiante, req.session.usuario.id);
   let tipoVision = await visionRepository.getVisiones();
   let tipoObs = await tipoObsRepository.getTipoObs();
+  let tipoReporte = await tipoReporteRepository.getTipoReporte();
+  let reportes = await reporteRepository.getReportes(id);
+  
   res.render('estudiante', {
     usuario:req.session.usuario, 
     estudiante, 
     observaciones,
     tipoVision,
-    tipoObs
+    tipoObs,
+    tipoReporte,
+    reportes
   });
 });
 
@@ -73,13 +81,12 @@ usuarioRouter.get('/estudiante/:id/sinReporte', async function (req, res) {
 });
 
 usuarioRouter.post('/estudiante/:id/addReporte', async function (req, res) {
-  console.log(res.body);
-  /*
-  let observaciones = await observacionesRepository.getObservacionesNoReporte(id).catch(e => {
-    console.log(e);
+  let reporte = await reporteRepository.SetReporte(req.body.tipoReporte);
+  req.body.observaciones.forEach(async (e) => {
+    await observacionesRepository.UpdateObservacion(reporte, e);
   });
-  res.end(JSON.stringify(observaciones));
-  */
+  let retornar = await observacionesRepository.getReportesById(reporte);
+  res.end(JSON.stringify(retornar));
 });
 
 module.exports = usuarioRouter;

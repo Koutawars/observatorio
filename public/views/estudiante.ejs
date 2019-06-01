@@ -71,12 +71,15 @@
                     <table class="highlight responsive-table">
                         <thead>
                             <tr>
-                                <th>Reportes</th>
+                                <th>Fecha</th>
+                                <th>Tipo</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <% for(var i = 0; i < observaciones.length; i++) { %>
-                                
+                        <tbody id ="report">
+                            <% for(var i = 0; i < reportes.length; i++) { %>
+                                <tr name="<%= reportes[i].idreporte %>">
+                                    <td><%= reportes[i].fecha.toDateString() %></td>
+                                </tr>
                             <% } %>
                         <tbody>
                     </table>
@@ -91,14 +94,14 @@
         <div id="modal2" class="modal">
             <div class="modal-content">
                 <h4>Agregar reporte</h4>
-                <!--<%# for(var i = 0; i < tipoReporte.length; i++) { %>
+                <% for(var i = 0; i < tipoReporte.length; i++) { %>
                     <p>
                         <label>
-                            <input value="<%# tipoObs[i].id_observacion %>" name="tipoReporte" type="radio" <%# if(i == 0){ %>checked <%# } %> />
-                            <span><%# tipoObs[i].observacion %></span>
+                            <input value="<%= tipoReporte[i].idtipo_repote %>" name="tipoReporte" type="radio" <% if(i == 0){ %>checked <% } %> />
+                            <span><%= tipoReporte[i].reporte %></span>
                         </label>
                     </p>
-                <%# } %> -->
+                <% } %> 
                 <table>
                     <thead>
                         <tr>

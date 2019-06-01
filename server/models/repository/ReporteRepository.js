@@ -37,9 +37,13 @@ class ReporteRepository {
     async SetReporte(ob){
         return await con.query(`
             INSERT INTO reporte (idreporte, fecha, tipo_reporte_idtipo_reporte)
-            VALUES (NULL, '${ob.fecha}', '${ob.idtipo_repote}')
-        `).then(function(result){
-             return true;
+            VALUES (NULL, NOW(), '${tipo}');
+        `).then(async function(result){
+             return await con.query(`
+             SELECT LAST_INSERT_ID() as id;
+                `).then(function(result){
+                    return result[0].id;
+                });
         });
     }
 

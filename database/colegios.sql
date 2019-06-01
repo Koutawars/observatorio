@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2019 a las 08:46:46
+-- Tiempo de generación: 01-06-2019 a las 12:28:12
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.1.12
 
@@ -207,7 +207,9 @@ CREATE TABLE `observacion` (
 --
 
 INSERT INTO `observacion` (`idobservacion`, `fecha`, `descripcion`, `tipo_observacion_idtipo_observacion`, `estudiante_idestudiante`, `reporte_idreporte`, `vision_idvision`, `usuario_id`) VALUES
-(1, '1996-12-10', 'asd', 1, 2, NULL, 1, 2);
+(1, '1996-12-10', 'asd', 1, 2, NULL, 1, 2),
+(3, '1996-12-13', 'sdaXD', 2, 2, NULL, 1, 2),
+(4, '0626-03-31', 'asdad', 1, 2, NULL, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -250,6 +252,13 @@ CREATE TABLE `tipo_reporte` (
   `idtipo_reporte` int(11) NOT NULL,
   `reporte` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipo_reporte`
+--
+
+INSERT INTO `tipo_reporte` (`idtipo_reporte`, `reporte`) VALUES
+(1, 'tipo 1');
 
 -- --------------------------------------------------------
 
@@ -542,13 +551,13 @@ ALTER TABLE `grupo`
 -- AUTO_INCREMENT de la tabla `observacion`
 --
 ALTER TABLE `observacion`
-  MODIFY `idobservacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idobservacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `idreporte` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idreporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_observacion`
@@ -560,7 +569,7 @@ ALTER TABLE `tipo_observacion`
 -- AUTO_INCREMENT de la tabla `tipo_reporte`
 --
 ALTER TABLE `tipo_reporte`
-  MODIFY `idtipo_reporte` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtipo_reporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
@@ -636,7 +645,7 @@ ALTER TABLE `grupo`
 --
 ALTER TABLE `observacion`
   ADD CONSTRAINT `fk_observacion_estudiante1` FOREIGN KEY (`estudiante_idestudiante`) REFERENCES `estudiante` (`idestudiante`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_observacion_reporte1` FOREIGN KEY (`reporte_idreporte`) REFERENCES `reporte` (`idreporte`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_observacion_reporte1` FOREIGN KEY (`reporte_idreporte`) REFERENCES `reporte` (`idreporte`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `fk_observacion_tipo_observacion1` FOREIGN KEY (`tipo_observacion_idtipo_observacion`) REFERENCES `tipo_observacion` (`idtipo_observacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_observacion_usuario1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_observacion_vision1` FOREIGN KEY (`vision_idvision`) REFERENCES `vision` (`idvision`) ON DELETE NO ACTION ON UPDATE NO ACTION;
