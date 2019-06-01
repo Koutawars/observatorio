@@ -8,6 +8,7 @@ class ObservacionesRepository {
         return await con.query(`
             SELECT * FROM observacion
             INNER JOIN estudiante ON estudiante.idestudiante = observacion.estudiante_idestudiante
+            INNER JOIN tipo_observacion ON tipo_observacion.idtipo_observacion = observacion.tipo_observacion_idtipo_observacion
             where estudiante.idestudiante = ${id} ;
         `).then(function(result){
 
@@ -15,7 +16,7 @@ class ObservacionesRepository {
             var temp;
             
             result.forEach(element => {
-                temp = new Obervacion(element.idobservacion, element.fecha, element.observacioncol, element.tipo_observacion_idtipo_observacion, element.estudiante_idestudiante, element.reporte_idreporte, element.vision_idvision);
+                temp = new Obervacion(element.idobservacion, element.fecha, element.descripcion, element.tipo_observacion_idtipo_observacion, element.estudiante_idestudiante, element.reporte_idreporte, element.vision_idvision, element.usuario_id, element.nombreObs);
                 observaciones.push(temp);
             });
              return observaciones;
