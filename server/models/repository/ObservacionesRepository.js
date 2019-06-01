@@ -27,14 +27,15 @@ class ObservacionesRepository {
             SELECT * FROM observacion
             INNER JOIN estudiante ON estudiante.idestudiante = observacion.estudiante_idestudiante
             INNER JOIN tipo_observacion ON tipo_observacion.idtipo_observacion = observacion.tipo_observacion_idtipo_observacion
-            where (estudiante.idestudiante = ${id} && observacion.reporte_idreporte == NULL ) ;
+            where (estudiante.idestudiante = ${id} AND observacion.reporte_idreporte IS NULL) ;
         `).then(function(result){
-
             var observaciones = [];
             var temp;
             
             result.forEach(element => {
                 temp = new Obervacion(element.idobservacion, element.fecha, element.descripcion, element.tipo_observacion_idtipo_observacion, element.estudiante_idestudiante, element.reporte_idreporte, element.vision_idvision, element.usuario_id, element.nombreObs);
+                
+                temp.fecha = temp.fecha.toDateString();
                 observaciones.push(temp);
             });
              return observaciones;

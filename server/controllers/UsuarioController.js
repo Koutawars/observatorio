@@ -66,6 +66,10 @@ usuarioRouter.post('/estudiante/:id/add', async function (req, res) {
 
 usuarioRouter.get('/estudiante/:id/sinReporte', async function (req, res) {
   let id = req.params.id;
+  let observaciones = await observacionesRepository.getObservacionesNoReporte(id).catch(e => {
+    console.log(e);
+  });
+  res.end(JSON.stringify(observaciones));
 });
 
 module.exports = usuarioRouter;

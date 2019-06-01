@@ -9,6 +9,18 @@ $(document).ready(function(){
             method: "GET",
             url: window.location.pathname + "/sinReporte",
             success: function(data){
+                data = JSON.parse(data);
+                let text = "";
+                data.forEach(e => {
+                    text += `
+                    <tr name="${e.idobservacion}">
+                        <td>${e.fecha}</td>
+                        <td>${e.descripcion}</td>
+                        <td>${e.nombreObs}</td>
+                    </tr>
+                    `;
+                });
+                $('#reportes').html(text);
             },
             error: function(e){
                 console.log(e);
