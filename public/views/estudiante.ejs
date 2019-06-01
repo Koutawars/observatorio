@@ -58,6 +58,7 @@
                                     <td><%= observaciones[i].nombreObs %></td>
                                 </tr>
                             <% } %>
+
                         <tbody>
                     </table>
                     <div class="section"></div>
@@ -81,13 +82,34 @@
                     </table>
                     <div class="section"></div>
                     <div class="right">
-                        <a href="#modal1" class="modal-trigger btn-large waves-effect waves-light red"><i
+                        <a id="reporte" href="#modal2" class="modal-trigger btn-large waves-effect waves-light red"><i
                                 class="material-icons">add</i></a>
                     </div>
                 </div>
             </div>
         </div>
-            
+        <div id="modal2" class="modal">
+            <div class="modal-content">
+                <h4>Agregar reporte</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Reportes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < observaciones.length; i++) { %>
+                            
+                        <% } %>
+                    <tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <a href="#!" id="enviarReporte" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            </div>
+        </div>    
         <div id="modal1" class="modal">
             <div class="modal-content">
                 <h4>Agregar observación</h4>

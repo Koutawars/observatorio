@@ -4,6 +4,17 @@ $(document).ready(function(){
     $('.modal').modal();
     $('.tooltipped').tooltip();
     $('.datepicker').datepicker();
+    $('#reporte').on('click', function(){
+        $.ajax({
+            method: "GET",
+            url: window.location.pathname + "/sinReporte",
+            success: function(data){
+            },
+            error: function(e){
+                console.log(e);
+            }
+        });
+    });
     $('#enviar').on('click', function(){
         let contenido = $('#observacion').val();
         let tipo = $('input:radio[name=tipo]:checked').val();
