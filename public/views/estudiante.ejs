@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="/css/estudiante.css">
     <title>Dashboard</title>
 </head>
 <body>
@@ -87,32 +88,22 @@
                 <div class="row">
                     <form class="col s12">
                         <div class="row">
+                            <div class="col s12">
+                                <label for="fecha">Escriba la fecha</label>
+                                <input id="fecha" type="date">  
+                            </div>
                             <div class="col s6">
                                 <% for(var i = 0; i < tipoObs.length; i++) { %>
                                     <p>
                                         <label>
-                                            <input value="<%= tipoObs[i].idtipo_observacion %>" name="visiblidad" type="radio" <% if(i == 0){ %>checked <% } %> />
+                                        <% console.log(tipoObs[i]); %>
+                                            <input value="<%= tipoObs[i].idtipo_observacion %>" name="tipo" type="radio" <% if(i == 0){ %>checked <% } %> />
                                             <span><%= tipoObs[i].observacion %></span>
                                         </label>
                                     </p>
                                 <% } %>
-                                <!--
-                                <p>
-                                    <label>
-                                        <input value="buena" name="tipo" type="radio" checked />
-                                        <span>Buena</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        <input value="mala" name="tipo" type="radio" />
-                                        <span>Mala</span>
-                                    </label>
-                                </p>
-                                -->
                             </div>
                             <div class="col s6">
-                            
                                 <% for(var i = 0; i < tipoVision.length; i++) { %>
                                     <p>
                                         <label>
@@ -121,27 +112,6 @@
                                         </label>
                                     </p>
                                 <% } %>
-                                <!-- 
-                                <p>
-                                    <label class="tooltipped" data-position="top" data-tooltip="Visible solo para el colegio." >
-                                        <input value="visible" name="visiblidad" type="radio" checked />
-                                        <span>Visible</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label class="tooltipped" data-position="top" data-tooltip="Visible para todos.">
-                                        <input value="Publica" name="visiblidad" type="radio" />
-                                        <span>Publica</span>
-                                    </label>
-                                </p>
-                                <p>
-                                    <label class="tooltipped" data-position="top" data-tooltip="Solo visible para usted.">
-                                        <input  value="NoVisible" name="visiblidad" type="radio" />
-                                        <span>No visible</span>
-                                    </label>
-                                </p>
-                                -->
-                                
                             </div>
                             <div class="input-field col s12">
                                 <textarea id="observacion" class="materialize-textarea"></textarea>

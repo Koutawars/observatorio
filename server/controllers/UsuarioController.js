@@ -46,5 +46,10 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
   });
 });
 
+usuarioRouter.post('/estudiante/:id/add', async function (req, res) {
+  let id = req.params.id;
+  console.log(req.body);
+});
+
 
 module.exports = usuarioRouter;

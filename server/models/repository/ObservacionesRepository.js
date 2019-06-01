@@ -43,9 +43,8 @@ class ObservacionesRepository {
     async SetObservacion(ob){
         return await con.query(`
             INSERT INTO observacion (idobservacion, fecha, descripcion, tipo_observacion_idtipo_observacion, estudiante_idestudiante, reporte_idreporte, vision_idvision, usuario_id)
-            VALUES (${ob.idobservacion}, ${ob.fecha}, ${ob.descripcion}, ${ob.tipo_observacion_id}, ${ob.estudiante_idestudiante}, ${ob.reporte_idreporte}, ${ob.vision_idvision}, ${ob.usuario_id});
+            VALUES (NULL, ${ob.fecha}, ${ob.descripcion}, ${ob.tipo_observacion_id}, ${ob.estudiante_idestudiante}, ${ob.reporte_idreporte}, ${ob.vision_idvision}, ${ob.usuario_id});
         `).then(function(result){
-
              return true;
         });
     }
