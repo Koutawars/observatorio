@@ -19,7 +19,14 @@ class ReporteRepository {
              return reportes;
         });
     }
-
+    async SetReporte(ob){
+        return await con.query(`
+            INSERT INTO reporte (idreporte, fecha, tipo_reporte_idtipo_reporte)
+            VALUES (NULL, '${ob.fecha}', '${ob.idtipo_repote}')
+        `).then(function(result){
+             return true;
+        });
+    }
 
 
 }
