@@ -32,7 +32,7 @@ class GrupoRepository {
              grupo.idgrupo = usuario_asignatura_grupo.grupo_idgrupo
              inner join
              grado on
-             grupo.idgrupo = grado.idgrado;
+             grupo.grado_idgrado = grado.idgrado;
         `).then(function (result) {
             var grupos = [];
             var temp;
