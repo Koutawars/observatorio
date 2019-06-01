@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2019 a las 15:19:00
+-- Tiempo de generación: 01-06-2019 a las 12:28:12
 -- Versión del servidor: 10.1.29-MariaDB
 -- Versión de PHP: 7.1.12
 
@@ -132,8 +132,7 @@ CREATE TABLE `estudiante` (
 --
 
 INSERT INTO `estudiante` (`idestudiante`, `nombre`, `apellido`, `grupo_idgrupo`) VALUES
-(2, 'Anderson', 'H', 2),
-(3, 'Hallel', 'leblandiu', 2);
+(2, 'Anderson', 'H', 2);
 
 -- --------------------------------------------------------
 
@@ -208,14 +207,9 @@ CREATE TABLE `observacion` (
 --
 
 INSERT INTO `observacion` (`idobservacion`, `fecha`, `descripcion`, `tipo_observacion_idtipo_observacion`, `estudiante_idestudiante`, `reporte_idreporte`, `vision_idvision`, `usuario_id`) VALUES
-(20, '1996-11-19', 'Hola ', 1, 2, 21, 1, 2),
-(21, '1996-12-11', 'xd', 1, 2, 21, 4, 2),
-(22, '3165-12-12', 'XD ', 2, 2, 21, 2, 2),
-(23, '1996-11-11', 'lol', 1, 2, 22, 1, 2),
-(24, '1996-11-11', 'xd lol', 2, 2, 22, 1, 2),
-(25, '1996-11-11', 'Lol jn', 2, 2, 23, 2, 2),
-(26, '1996-11-11', 'sa', 1, 2, 23, 1, 2),
-(27, '1996-11-11', 'asdad', 1, 2, 23, 1, 2);
+(1, '1996-12-10', 'asd', 1, 2, NULL, 1, 2),
+(3, '1996-12-13', 'sdaXD', 2, 2, NULL, 1, 2),
+(4, '0626-03-31', 'asdad', 1, 2, NULL, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -228,15 +222,6 @@ CREATE TABLE `reporte` (
   `fecha` date NOT NULL,
   `tipo_reporte_idtipo_reporte` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `reporte`
---
-
-INSERT INTO `reporte` (`idreporte`, `fecha`, `tipo_reporte_idtipo_reporte`) VALUES
-(21, '2019-06-01', 1),
-(22, '2019-06-01', 1),
-(23, '2019-06-01', 1);
 
 -- --------------------------------------------------------
 
@@ -291,8 +276,7 @@ CREATE TABLE `tipo_usuario` (
 --
 
 INSERT INTO `tipo_usuario` (`idtipo_usuario`, `nombre_tipo_usuario`) VALUES
-(2, 'Profesor'),
-(3, 'director');
+(2, 'Profesor');
 
 -- --------------------------------------------------------
 
@@ -317,9 +301,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `direccion`, `correo`, `telefono`, `tipo_usuario_idtipo_usuario`, `documento`, `password`) VALUES
-(2, 'Kevin', 'Urieles', 'cra 7', 'profesor2', 6565, 2, 5454155, 'profesor2'),
-(3, 'El gato', 'Director', 'Cra 7 arcoriris', 'director', 15145, 3, 115621621, 'director'),
-(4, 'Carlos', 'Campo', 'cra 7', 'profesor', 3232, 2, 3232, 'profesor');
+(2, 'Kevin', 'Urieles', 'cra 7', 'admin', 6565, 2, 5454155, 'admin');
 
 -- --------------------------------------------------------
 
@@ -338,8 +320,7 @@ CREATE TABLE `usuario_asignatura_grupo` (
 --
 
 INSERT INTO `usuario_asignatura_grupo` (`usuario_id`, `asignatura_idasignatura`, `grupo_idgrupo`) VALUES
-(2, 2, 2),
-(4, 2, 3);
+(2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -546,7 +527,7 @@ ALTER TABLE `estimulo`
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  MODIFY `idestudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idestudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `evidencia`
@@ -570,13 +551,13 @@ ALTER TABLE `grupo`
 -- AUTO_INCREMENT de la tabla `observacion`
 --
 ALTER TABLE `observacion`
-  MODIFY `idobservacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idobservacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `reporte`
 --
 ALTER TABLE `reporte`
-  MODIFY `idreporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idreporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_observacion`
@@ -594,13 +575,13 @@ ALTER TABLE `tipo_reporte`
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `idtipo_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idtipo_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `vision`
