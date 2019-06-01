@@ -46,6 +46,7 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   var observaciones;
   if(req.session.usuario.tipoUsuario.nombre.toLowerCase() == constantes.PROFESOR ){
     observaciones = await observacionesRepository.getObservaciones(estudiante.idestudiante, req.session.usuario.id);
@@ -59,6 +60,9 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
 =======
 >>>>>>> parent of 8fc937b... XD
 
+=======
+  
+>>>>>>> parent of 8da907c... XD
 =======
   
 >>>>>>> parent of 8da907c... XD
