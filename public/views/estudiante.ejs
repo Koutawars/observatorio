@@ -71,12 +71,15 @@
                     <table class="highlight responsive-table">
                         <thead>
                             <tr>
-                                <th>Reportes</th>
+                                <th>Fecha</th>
+                                <th>Tipo</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <% for(var i = 0; i < observaciones.length; i++) { %>
-                                
+                        <tbody id ="report">
+                            <% for(var i = 0; i < reportes.length; i++) { %>
+                                <tr name="<%= reportes[i].idreporte %>">
+                                    <td><%= reportes[i].fecha.toDateString() %></td>
+                                </tr>
                             <% } %>
                         <tbody>
                     </table>

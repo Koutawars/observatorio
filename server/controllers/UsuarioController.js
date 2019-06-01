@@ -42,6 +42,7 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
   let tipoVision = await visionRepository.getVisiones();
   let tipoObs = await tipoObsRepository.getTipoObs();
   let tipoReporte = await tipoReporteRepository.getTipoReporte();
+  let reportes = await reporteRepository.getReportes(id);
   
   res.render('estudiante', {
     usuario:req.session.usuario, 
@@ -49,7 +50,8 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
     observaciones,
     tipoVision,
     tipoObs,
-    tipoReporte
+    tipoReporte,
+    reportes
   });
 });
 
@@ -83,8 +85,8 @@ usuarioRouter.post('/estudiante/:id/addReporte', async function (req, res) {
   req.body.observaciones.forEach(async (e) => {
     await observacionesRepository.UpdateObservacion(reporte, e);
   });
-
-  res.end(JSON.stringify({}));
+  let retornar = await observacionesRepository.getReportesById(reporte);
+  res.end(JSON.stringify(retornar));
 });
 
 module.exports = usuarioRouter;

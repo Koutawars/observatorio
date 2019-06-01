@@ -60,7 +60,14 @@ $(document).ready(function(){
                 contentType: "application/json",
                 datatype: "JSON",
                 success: function(data){
-                    M.toast({html: 'Agregada observación con éxito'});
+                    data = JSON.parse(data);
+                    let text = '';
+                    text += `
+                    <tr name="${data.idreporte}">
+                        <td>${data.fecha}</td>
+                    </tr>
+                    `;
+                    M.toast({html: 'se agrego reporte con éxito'});
                 },
                 error: function(jqXHR , status, e){
                     M.toast({html: 'Error a Agregada observación status: '+jqXHR.status});
