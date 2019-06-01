@@ -4,12 +4,12 @@ const Obervacion = require('../identity/Obervacion.js');
 
 class ObservacionesRepository {
 
-    async getObservaciones(id){
+    async getObservaciones(id, idpr){
         return await con.query(`
             SELECT * FROM observacion
             INNER JOIN estudiante ON estudiante.idestudiante = observacion.estudiante_idestudiante
             INNER JOIN tipo_observacion ON tipo_observacion.idtipo_observacion = observacion.tipo_observacion_idtipo_observacion
-            where estudiante.idestudiante = ${id} ;
+            where estudiante.idestudiante = ${id} AND observacion.usuario_id = ${idpr};
         `).then(function(result){
 
             var observaciones = [];
