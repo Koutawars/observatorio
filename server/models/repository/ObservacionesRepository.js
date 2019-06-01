@@ -33,7 +33,7 @@ class ObservacionesRepository {
             var temp;
             
             result.forEach(element => {
-                temp = new Obervacion(element.idobservacion, element.fecha, element.descripcion, element.tipo_observacion_idtipo_observacion, element.estudiante_idestudiante, element.reporte_idreporte, element.vision_idvision, element.usuario_id, element.nombreObs);
+                temp = new Obervacion(element.idobservacion, element.fecha, element.descripcion, element.tipo_observacion_idtipo_observacion, element.estudiante_idestudiante, element.reporte_idreporte, element.vision_idvision, element.usuario_id, element.observacion);
                 
                 temp.fecha = temp.fecha.toDateString();
                 observaciones.push(temp);
@@ -41,6 +41,17 @@ class ObservacionesRepository {
              return observaciones;
         });
     }
+    async UpdateObservacion(idReporte,ID_ob){
+        return await con.query(`
+         UPDATE observacion
+         SET observacion.reporte_idreporte = ${idReporte}
+         WHERE observacion.idobservacion = ${ID_ob};
+        `).then(function(result){
+             return true;
+        });
+    }
+
+    
     async SetObservacion(ob){
         return await con.query(`
             INSERT INTO observacion (idobservacion, fecha, descripcion, tipo_observacion_idtipo_observacion, estudiante_idestudiante, reporte_idreporte, vision_idvision, usuario_id)
