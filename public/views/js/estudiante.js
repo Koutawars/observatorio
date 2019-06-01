@@ -1,9 +1,20 @@
+var selects = [];
 $(document).ready(function(){
     $('.tabs').tabs();
     $('.sidenav').sidenav();
     $('.modal').modal();
     $('.tooltipped').tooltip();
     $('.datepicker').datepicker();
+    $('#reportes').on('click', 'tr', function(){
+        let id = this.getAttribute("name");
+        if(selects[id]){
+            selects[id] = false;
+            this.setAttribute("class", "white");
+        }else{
+            selects[id] = true;
+            this.setAttribute("class", "indigo lighten-4");
+        }
+    });
     $('#reporte').on('click', function(){
         $.ajax({
             method: "GET",
@@ -12,6 +23,7 @@ $(document).ready(function(){
                 data = JSON.parse(data);
                 let text = "";
                 data.forEach(e => {
+                    selects[e.idobservacion] = false;
                     text += `
                     <tr name="${e.idobservacion}">
                         <td>${e.fecha}</td>

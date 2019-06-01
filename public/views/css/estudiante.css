@@ -1,3 +1,7 @@
 .modal{
     max-height: 84%;
 }
+
+#reportes tr {
+    cursor: pointer;
+}

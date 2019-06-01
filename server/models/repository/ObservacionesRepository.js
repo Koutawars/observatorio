@@ -16,7 +16,7 @@ class ObservacionesRepository {
             var temp;
             
             result.forEach(element => {
-                temp = new Obervacion(element.idobservacion, element.fecha, element.descripcion, element.tipo_observacion_idtipo_observacion, element.estudiante_idestudiante, element.reporte_idreporte, element.vision_idvision, element.usuario_id, element.nombreObs);
+                temp = new Obervacion(element.idobservacion, element.fecha, element.descripcion, element.tipo_observacion_idtipo_observacion, element.estudiante_idestudiante, element.reporte_idreporte, element.vision_idvision, element.usuario_id, element.observacion);
                 observaciones.push(temp);
             });
              return observaciones;
