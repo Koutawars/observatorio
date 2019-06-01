@@ -43,7 +43,6 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
   let tipoObs = await tipoObsRepository.getTipoObs();
   let tipoReporte = await tipoReporteRepository.getTipoReporte();
   let reportes = await reporteRepository.getReportes(id);
-  console.log(reportes);
 
   res.render('estudiante', {
     usuario:req.session.usuario, 
@@ -67,7 +66,7 @@ usuarioRouter.post('/estudiante/:id/add', async function (req, res) {
     vision_idvision: req.body.visiblidad,
     usuario_id
   };
-  observacion = await observacionesRepository.SetObservacion(observacion).catch(e => {
+  await observacionesRepository.SetObservacion(observacion).catch(e => {
     console.log(e);
   });
   res.end(JSON.stringify(observacion));
@@ -86,7 +85,7 @@ usuarioRouter.post('/estudiante/:id/addReporte', async function (req, res) {
   req.body.observaciones.forEach(async (e) => {
     await observacionesRepository.UpdateObservacion(reporte, e);
   });
-  let retornar = await observacionesRepository.getReportesById(reporte);
+  let retornar = await reporteRepository.getReportesById(reporte);
   res.end(JSON.stringify(retornar));
 });
 

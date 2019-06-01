@@ -52,7 +52,6 @@ $(document).ready(function(){
         let tipoReporte = $('input:radio[name=tipoReporte]:checked').val();
         let json = JSON.stringify({observaciones, tipoReporte});
         if(selects.length > 0){
-            console.log(json);
             $.ajax({
                 method: "POST",
                 url: window.location.pathname + "/addReporte",
@@ -60,16 +59,7 @@ $(document).ready(function(){
                 contentType: "application/json",
                 datatype: "JSON",
                 success: function(data){
-                    data = JSON.parse(data);
-                    let text = '';
-                    console.log(data);
-                    text += `
-                    <tr name="${data.idreporte}">
-                        <td>${data.fecha}</td>
-                        <td>${data.nombreTipo}</td>
-                    </tr>
-                    `;
-                    $('#report').append(text);  
+                    window.location.reload();
                     M.toast({html: 'se agrego reporte con éxito'});
                 },
                 error: function(jqXHR , status, e){
@@ -99,6 +89,7 @@ $(document).ready(function(){
                     datatype: "JSON",
                     success: function(data){
                         M.toast({html: 'Agregada observación con éxito'});
+                        window.location.reload();
                     },
                     error: function(jqXHR , status, e){
                         M.toast({html: 'Error a Agregada observación status: '+jqXHR.status});

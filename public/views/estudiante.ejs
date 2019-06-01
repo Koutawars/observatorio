@@ -50,10 +50,10 @@
                                 <th>Tipo</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="observaciones">
                             <% for(var i = 0; i < observaciones.length; i++) { %>
                                 <tr name="<%= observaciones[i].idobservacion %>">
-                                    <td><%= observaciones[i].fecha.toDateString() %></td>
+                                    <td><%= observaciones[i].fecha %></td>
                                     <td><%= observaciones[i].descripcion %></td>
                                     <td><%= observaciones[i].nombreObs %></td>
                                 </tr>
