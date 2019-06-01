@@ -28,8 +28,6 @@ loginRouter.post('/', async function (req, res) {
             }
             if(usuario.tipoUsuario.nombre.toLowerCase() == constantes.DIRECTOR){
                 let grupos = await gruposRepository.getGruposTodos(usuario.id);
-                console.log(grupos);
-                console.log("ENTRA");
                 usuario.grupos = grupos;
             }
             req.session.usuario = usuario;
