@@ -13,7 +13,7 @@ class ReporteRepository {
             var temp;
             
             result.forEach(element => {
-                temp = new Reporte(element.idreporte, element.fecha, element.tipo_reporte_idtipo_reporte );
+                temp = new Reporte(element.idreporte, element.fecha, element.tipo_reporte_idtipo_reporte, element.reporte );
                 reportes.push(temp);
             });
              return reportes;
@@ -21,7 +21,7 @@ class ReporteRepository {
     }
     async getReportesById(id){
         return await con.query(`
-            SELECT * FROM reporte  where reporte.idreporte=${id};
+            SELECT * FROM reporte INNER JOIN tipo_reporte on tipo_reporte.idtipo_reporte = reporte.tipo_reporte_idtipo_reporte   where reporte.idreporte=${id};
         `).then(function(result){
 
             var reportes = [];
