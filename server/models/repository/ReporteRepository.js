@@ -6,7 +6,7 @@ class ReporteRepository {
 
     async getReportes(id){
         return await con.query(`
-            SELECT * FROM reporte INNER JOIN observacion on reporte.idreporte = observacion.reporte_idreporte where observacion.estudiante_idestudiante=${id};
+            SELECT * FROM reporte INNER JOIN observacion on reporte.idreporte = observacion.reporte_idreporte INNER JOIN tipo_reporte on tipo_reporte.idtipo_reporte = reporte.tipo_reporte_idtipo_reporte where observacion.estudiante_idestudiante=${id};
         `).then(function(result){
 
             var reportes = [];
@@ -28,7 +28,7 @@ class ReporteRepository {
             var temp;
             
             result.forEach(element => {
-                temp = new Reporte(element.idreporte, element.fecha, element.tipo_reporte_idtipo_reporte );
+                temp = new Reporte(element.idreporte, element.fecha, element.tipo_reporte_idtipo_reporte,element.reporte );
                 reportes.push(temp);
             });
              return reportes;
