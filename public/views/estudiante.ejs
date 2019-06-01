@@ -13,7 +13,6 @@
 <body>
     <%- include('nav', {tipo: usuario.tipoUsuario }); %>
     <div class="section"></div>
-
     <div class="container">
         <div class="row">
             <div class="col s12 l3">
@@ -89,6 +88,15 @@
                     <form class="col s12">
                         <div class="row">
                             <div class="col s6">
+                                <% for(var i = 0; i < tipoObs.length; i++) { %>
+                                    <p>
+                                        <label>
+                                            <input value="<%= tipoObs[i].idtipo_observacion %>" name="visiblidad" type="radio" <% if(i == 0){ %>checked <% } %> />
+                                            <span><%= tipoObs[i].observacion %></span>
+                                        </label>
+                                    </p>
+                                <% } %>
+                                <!--
                                 <p>
                                     <label>
                                         <input value="buena" name="tipo" type="radio" checked />
@@ -101,8 +109,19 @@
                                         <span>Mala</span>
                                     </label>
                                 </p>
+                                -->
                             </div>
                             <div class="col s6">
+                            
+                                <% for(var i = 0; i < tipoVision.length; i++) { %>
+                                    <p>
+                                        <label>
+                                            <input value="<%= tipoVision[i].idvision %>" name="visiblidad" type="radio" <% if(i == 0){ %>checked <% } %> />
+                                            <span><%= tipoVision[i].nivel %></span>
+                                        </label>
+                                    </p>
+                                <% } %>
+                                <!-- 
                                 <p>
                                     <label class="tooltipped" data-position="top" data-tooltip="Visible solo para el colegio." >
                                         <input value="visible" name="visiblidad" type="radio" checked />
@@ -121,6 +140,8 @@
                                         <span>No visible</span>
                                     </label>
                                 </p>
+                                -->
+                                
                             </div>
                             <div class="input-field col s12">
                                 <textarea id="observacion" class="materialize-textarea"></textarea>
