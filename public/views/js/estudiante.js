@@ -39,6 +39,16 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('#enviarReporte').on('click', function(){
+        let observaciones = [];
+        selects.forEach((e, index) => {
+            if(e){
+                observaciones.push(index);
+            }
+        });
+        console.log(observaciones);
+    });
     $('#enviar').on('click', function(){
         let contenido = $('#observacion').val();
         let tipo = $('input:radio[name=tipo]:checked').val();

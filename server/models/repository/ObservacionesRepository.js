@@ -51,6 +51,18 @@ class ObservacionesRepository {
         });
     }
 
+    async getOne(id){
+        return await con.query(`
+            SELECT * FROM observacion
+            INNER JOIN estudiante ON estudiante.idestudiante = observacion.estudiante_idestudiante
+            INNER JOIN tipo_observacion ON tipo_observacion.idtipo_observacion = observacion.tipo_observacion_idtipo_observacion
+            WHERE observacion.idobservacion = ${id};
+        `).then(function(result){
+            let element = result[0];
+            let observacion = new Obervacion(element.idobservacion, element.fecha, element.descripcion, element.tipo_observacion_idtipo_observacion, element.estudiante_idestudiante, element.reporte_idreporte, element.vision_idvision, element.usuario_id, element.observacion);
+            return observacion;
+        });
+    }
     
     async SetObservacion(ob){
         return await con.query(`
