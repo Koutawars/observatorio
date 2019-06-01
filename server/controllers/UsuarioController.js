@@ -2,11 +2,16 @@ var express = require('express');
 var usuarioRouter = express.Router();
 const EstudiantesRepository = require('./../models/repository/EstudiantesRepository.js');
 const ObservacionesRepository = require('./../models/repository/ObservacionesRepository.js');
+const VisionRepository = require('./../models/repository/VisionRepository.js');
+const TipoObsRepository = require('./../models/repository/TipoObsRepository.js');
+
 
 const security = require('./../security.js');
 
-estudiantesRepository = new EstudiantesRepository();
-observacionesRepository = new ObservacionesRepository();
+let estudiantesRepository = new EstudiantesRepository();
+let observacionesRepository = new ObservacionesRepository();
+let visionRepository = new VisionRepository();
+let tipoObsRepository = new TipoObsRepository();
 
 usuarioRouter.get('/', function (req, res) {
   res.render('dashboard', {usuario:req.session.usuario});
@@ -30,7 +35,15 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
     res.status(404).render('404');
   });
   let observaciones = await observacionesRepository.getObservaciones(estudiante.idestudiante);
-  res.render('estudiante', {usuario:req.session.usuario, estudiante, observaciones});
+  let tipoVision = await visionRepository.getVisiones();
+  let tipoObs = await tipoObsRepository.getObservaciones();
+  res.render('estudiante', {
+    usuario:req.session.usuario, 
+    estudiante, 
+    observaciones,
+    tipoVision,
+    tipoObs
+  });
 });
 
 

@@ -12,7 +12,7 @@ $(document).ready(function(){
 			contentType: "application/json",
 			datatype: "JSON",
 			success: function(data, status, jqXHR){
-				if(data){
+				if(data.correo){
 					window.location.replace("/dashboard");
 				}else{
 					M.toast({html: 'No se encuentra el usuario con esa cuenta y contraseña.'});

@@ -3,8 +3,7 @@ const Vision = require('../identity/Vision.js');
 
 
 class VisionRepository {
-
-    async getObservaciones(id){
+    async getVisiones(){
         return await con.query(`
             SELECT * FROM vision;
         `).then(function(result){
