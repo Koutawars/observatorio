@@ -2,6 +2,7 @@ const express = require('express');
 const loginRouter = express.Router();
 const UsuarioRepository = require('./../models/repository/UsuarioRepository.js');
 const GruposRepository = require('./../models/repository/GruposRepository.js');
+const constantes = require('./../constantes.js');
 
 var usuarioRepository = new UsuarioRepository();
 var gruposRepository = new GruposRepository();
@@ -18,7 +19,7 @@ loginRouter.post('/', async function (req, res) {
     let usuario = await usuarioRepository.getOneCorreo(correo);
     if(usuario){
         if(usuario.password == password){
-            if(usuario.tipoUsuario.id == 1){
+            if(usuario.tipoUsuario.nombre.toLowerCase() == constantes.PROFESOR){
                 let grupos = await gruposRepository.getGrupos(usuario.id);
                 let gruposDemas = await gruposRepository.getGruposN(usuario.id);
                 usuario.grupos = grupos;

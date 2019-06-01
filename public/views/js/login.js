@@ -12,6 +12,7 @@ $(document).ready(function(){
 			contentType: "application/json",
 			datatype: "JSON",
 			success: function(data, status, jqXHR){
+				data = JSON.parse(data);
 				if(data.correo){
 					window.location.replace("/dashboard");
 				}else{

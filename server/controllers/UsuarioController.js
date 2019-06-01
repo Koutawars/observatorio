@@ -36,7 +36,7 @@ usuarioRouter.get('/estudiante/:id', async function (req, res) {
   });
   let observaciones = await observacionesRepository.getObservaciones(estudiante.idestudiante);
   let tipoVision = await visionRepository.getVisiones();
-  let tipoObs = await tipoObsRepository.getObservaciones();
+  let tipoObs = await tipoObsRepository.getTipoObs();
   res.render('estudiante', {
     usuario:req.session.usuario, 
     estudiante, 

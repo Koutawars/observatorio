@@ -28,21 +28,24 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                        <% for(var i = 0; i < usuario.grupos.length; i++) { %>
-                            <tr class="click blue lighten-5" name = "<%= usuario.grupos[i].idgrupo %>">
-                                <td><%= usuario.grupos[i].idgrupo %></td>
-                                <td><%= usuario.grupos[i].salon %></td>
-                                <td>Grado</td>
-                            </tr>
+                        <% if(usuario.grupos) { %>
+                            <% for(var i = 0; i < usuario.grupos.length; i++) { %>
+                                <tr class="click blue lighten-5" name = "<%= usuario.grupos[i].idgrupo %>">
+                                    <td><%= usuario.grupos[i].idgrupo %></td>
+                                    <td><%= usuario.grupos[i].salon %></td>
+                                    <td><%= usuario.grupos[i].grado %></td>
+                                </tr>
+                            <% } %>
                         <% } %>
 
-                        <% for(var i = 0; i < usuario.gruposDemas.length; i++) { %>
-                            <tr name = "<%= usuario.grupos[i].idgrupo %>">
-                                <td><%= usuario.gruposDemas[i].nombre %></td>
-                                <td><%= usuario.gruposDemas[i].apellido %></td>
-                                <td>Grado</td>
-                            </tr>
+                        <% if(usuario.gruposDemas) { %>
+                            <% for(var i = 0; i < usuario.gruposDemas.length; i++) { %>
+                                <tr name = "<%= usuario.grupos[i].idgrupo %>">
+                                    <td><%= usuario.gruposDemas[i].nombre %></td>
+                                    <td><%= usuario.gruposDemas[i].apellido %></td>
+                                    <td><%= usuario.gruposDemas[i].grado %></td>
+                                </tr>
+                            <% } %>
                         <% } %>
                     </tbody>
                 </table>
