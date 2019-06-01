@@ -40,6 +40,17 @@ class ObservacionesRepository {
              return observaciones;
         });
     }
+    async UpdateObservacion(idReporte,ID_ob){
+        return await con.query(`
+         UPDATE observacion
+         SET observacion.reporte_idreporte = ${idReporte}
+         WHERE observacion.idobservacion= ${ID_ob};
+        `).then(function(result){
+             return true;
+        });
+    }
+
+    
     async SetObservacion(ob){
         return await con.query(`
             INSERT INTO observacion (idobservacion, fecha, descripcion, tipo_observacion_idtipo_observacion, estudiante_idestudiante, reporte_idreporte, vision_idvision, usuario_id)
