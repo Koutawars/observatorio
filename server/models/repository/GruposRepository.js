@@ -55,7 +55,7 @@ class GrupoRepository {
                 grupo.idgrupo = usuario_asignatura_grupo.grupo_idgrupo
                 inner join
                 grado on
-                grupo.grado_idgrado = grado.idgrado
+                grupo.idgrupo = grado.idgrado
                 where usuario_asignatura_grupo.usuario_id != ${id} ;
              `).then(function (result) {
             var grupos = [];
